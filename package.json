@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "test:single":"npx playwright test GoogleSearch.test.ts --project=Chrome",
-    "test:parallel":"npx playwright test --grep @Regression --project=Chrome",
-    "test:serial":"npx playwright test --grep @Regression --workers=1 --project=Chrome",
-    "test:api":"npx playwright test --grep @api --workers=1 --project=Chrome",
-    "test:record":"npx playwright codegen",
-    "test:visual":"npx playwright test visualComparision.test.ts --project=Chrome",
-    "test:device":"npx playwright test Emulation.test.ts --project=Chrome",
-    "test:report":"allure serve"
-
+    "test:single": "npx playwright test GoogleSearch.test.ts --project=Chrome",
+    "test:parallel": "npx playwright test --grep @Regression --project=Chrome",
+    "test:serial": "npx playwright test --grep @Regression --workers=1 --project=Chrome",
+    "test:api": "npx playwright test --grep @api --workers=1 --project=Chrome",
+    "test:db": "npx playwright test DB.test.ts",
+    "test:record": "npx playwright codegen",
+    "test:visual": "npx playwright test visualComparision.test.ts --project=Chrome",
+    "test:device": "npx playwright test Emulation.test.ts --project=Chrome",
+    "test:report": "allure serve"
   },
   "repository": {
     "type": "git",
