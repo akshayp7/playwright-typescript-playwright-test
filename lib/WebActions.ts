@@ -18,7 +18,7 @@ export class WebActions {
     async decipherPassword(): Promise<string> {
         const key = `SECRET`;
         //ENCRYPT
-        // const cipher = CryptoJS.AES.encrypt('Pasword',key);
+        // const cipher = CryptoJS.AES.encrypt('demouser',key);
         // console.log(cipher.toString());
         return CryptoJS.AES.decrypt(loginData.password, key).toString(CryptoJS.enc.Utf8);
     }
@@ -149,7 +149,7 @@ export class WebActions {
             throw new Error(`${errorMessage}`);
         }
     }
-    
+
     async expectToBeValue(expectedValue: string, actualValue: string, errorMessage: string): Promise<void> {
         try {
             expect(expectedValue.trim()).toBe(actualValue);

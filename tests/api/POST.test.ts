@@ -14,7 +14,7 @@ test(`@API postUsers`, async () => {
 
     const responseBodyParams = (await apiActions.readValuesFromTextFile(`postUsers`)).split(`#`)[1];
     await apiActions.verifyResponseBody(responseBodyParams, response.body, expect.getState().currentTestName, `Respomse Body`);
-    // console.log(JSON.stringify(response.headers).trim());
+
     const responseBodyHeaders = (await apiActions.readValuesFromTextFile(`postUsers`)).split(`#`)[2];
     await apiActions.verifyResponseBody(responseBodyHeaders, response.headers, expect.getState().currentTestName, `Respomse Headers`);
 });

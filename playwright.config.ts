@@ -21,17 +21,17 @@ module.exports = {
         channel: `chrome`,
 
         //Browser Mode
-        headless: `true`,
+        headless: false,
 
         //Slows down execution by ms
         slowMo: 0,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: `true`,
+        ignoreHTTPSErrors: true,
 
         //Enable File Downloads in Chrome
-        acceptDownloads: `true`,
+        acceptDownloads: true,
 
         //Artifacts
         screenshot: `only-on-failure`,
@@ -43,11 +43,11 @@ module.exports = {
       name: `Chromium`,
       use: {
         browserName: `chromium`,
-        headless: `true`,
+        headless: true,
         slowMo: 0,
         viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: `true`,
-        acceptDownloads: `true`,
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
@@ -58,11 +58,11 @@ module.exports = {
       name: `Firefox`,
       use: {
         browserName: `firefox`,
-        headless: `true`,
+        headless: true,
         slowMo: 0,
         viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: `true`,
-        acceptDownloads: `true`,
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
@@ -74,11 +74,11 @@ module.exports = {
       use: {
         browserName: `chromium`,
         channel: `msedge`,
-        headless: `true`,
+        headless: false,
         slowMo: 0,
         viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: `true`,
-        acceptDownloads: `true`,
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
@@ -88,11 +88,11 @@ module.exports = {
       name: `WebKit`,
       use: {
         browserName: `webkit`,
-        headless: `true`,
+        headless: true,
         slowMo: 0,
         viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: `true`,
-        acceptDownloads: `true`,
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
@@ -103,10 +103,10 @@ module.exports = {
       use: {
         ...devices[`iPhone 12 Pro Max`],
         browserName: `chromium`,
-        headless: `true`,
+        headless: true,
         slowMo: 0,
-        ignoreHTTPSErrors: `true`,
-        acceptDownloads: `true`,
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,

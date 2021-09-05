@@ -1,8 +1,8 @@
 {
   "waitForElement": 300000,
-  "URL": "https://www.google.com",
-  "username": "admin",
-  "password": "password",
+  "URL": "https://phptravels.org/index.php?rp=/login",
+  "username": "user@phptravels.com",
+  "password": "U2FsdGVkX1+viC6x/NN+BmiAKY0bSWljucVMQedC6d0=",
   "dbUsername": "",
   "dbPassword": "",
   "dbServerName": "",
