@@ -1,0 +1,11 @@
+{
+  "waitForElement": 300000,
+  "URL": "https://www.google.com",
+  "username": "admin",
+  "password": "password",
+  "dbUsername": "",
+  "dbPassword": "",
+  "dbServerName": "",
+  "dbPort": "",
+  "dbName": ""
+}
