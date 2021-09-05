@@ -1,15 +1,39 @@
 {
-  "name": "playwright-ts",
+  "name": "playwright-typescipt-playwright-test",
   "version": "1.0.0",
   "description": "Playwright Framework with Typescript",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "test:single":"npx playwright test GoogleSearch.test.ts --project=Chrome",
+    "test:parallel":"npx playwright test --grep @Regression --project=Chrome",
+    "test:serial":"npx playwright test --grep @Regression --workers=1 --project=Chrome",
+    "test:api":"npx playwright test --grep @api --workers=1 --project=Chrome",
+    "test:record":"npx playwright codegen",
+    "test:visual":"npx playwright test visualComparision.test.ts --project=Chrome",
+    "test:device":"npx playwright test Emulation.test.ts --project=Chrome",
+    "test:report":"allure serve"
+
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/akshayp7/playwright-typescipt-playwright-test.git"
   },
   "author": "Akshay Pai",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.14.1",
+    "@types/crypto-js": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "crypto-js": "^4.1.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.2",
+    "exceljs": "^4.3.0",
+    "experimental-allure-playwright": "0.0.3",
+    "pg": "^8.7.1",
+    "playwright": "^1.14.1",
+    "supertest": "^6.1.6",
+    "typescript": "^4.4.2"
+  }
 }
