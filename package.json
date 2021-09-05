@@ -1,0 +1,15 @@
+{
+  "name": "playwright-ts",
+  "version": "1.0.0",
+  "description": "Playwright Framework with Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akshayp7/playwright-typescipt-playwright-test.git"
+  },
+  "author": "Akshay Pai",
+  "license": "ISC"
+}
