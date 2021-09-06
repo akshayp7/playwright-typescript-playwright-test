@@ -98,13 +98,13 @@ npm install
 ## Usage
 
 1. For Browser Configuration, change required parameters in `playwright.config.ts`.
-2. For execution entire test suite on all available browsers simultaneously execute:
+2. For execution entire test suite on all available browsers simultaneously execute, `Teast Cases are present in tests folder`:
 
 ```JS
 npm run test
 ```
 
-3. For executing single test case on Chrome browser execute the below command, ypu can change the browser for execution e.g. if you want to run test cases on Firefox, you can change `--project=Firefox` against `test:single` in `package.json`, just make sure the browser name given matches the name given in `playwright.config.ts`.
+3. For executing single test case on Chrome browser execute the below command, you can change the browser for execution e.g. if you want to run test cases on Firefox, you can change `--project=Firefox` against `test:single` in `package.json`, just make sure the browser name given matches the name given in `playwright.config.ts`.
 
 ```JS
 npm run test:single
