@@ -68,17 +68,15 @@ Bonus:
 
 The following software are required:
 
-- nodejs
+- nodejs : Download and Install Node JS from
   ```sh
-  Download and Install Node JS from https://nodejs.org/en/download/
+  https://nodejs.org/en/download/
   ```
-- Java
+- Java Download and Install Java 8 or above, Allure Reports require Java 8 or higher.: 
+
+- allure commandline : Install allure command line for generating Allure Reports using 
   ```sh
-  Download and Install Java 8 or above, Allure Reports require Java 8 or higher.
-  ``` 
-- allure commandline
-  ```sh
-  Install allure command line for generating Allure Reports using "npm install -g allure-commandline"
+  npm install -g allure-commandline
   ``` 
 ### Installation
 
