@@ -99,7 +99,7 @@ npm install
 
 1. For Browser Configuration, change required parameters in "playwright.config.ts".
 2. For execution entire test suite on all available browsers simultaneously execute:
-   
+
 ```JS
 npm run test
 ```
@@ -126,4 +126,39 @@ npm run test:serial
 
 ```JS
 npm run test:api
+```
+
+7. For recording test scripts :
+
+```JS
+npm run test:record
+```
+
+8. To produce and visually compare screenshots execute below command. On first execution reference screenshot will be generated for comparision with subsequent runs.
+
+```JS
+npm run test:visual
+```
+
+9. For emulating test cases on any device, in "playwright.config.ts", under device section provide desired device name and execute :
+
+```JS
+npm run test:device
+```
+
+10. For Report generation execute :
+
+```JS
+npm run test:report
+```
+
+11. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
+12. Screenshots, Videos and Trace files will be generated in test-results folder.
+13. To change your username go to `testData.json` and provide value against `username`
+14. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testData.json` against `password` field. You can comment Encrypt bloack ater this.
+15. For executing Postgres DB test case, navigate to `testData.json` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
+16. For viewing trace files, go to folder where `trace.zip` is generated and execute :
+
+```JS
+npx playwright show-trace trace.zip
 ```

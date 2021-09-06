@@ -18,7 +18,7 @@ export class WebActions {
     async decipherPassword(): Promise<string> {
         const key = `SECRET`;
         //ENCRYPT
-        // const cipher = CryptoJS.AES.encrypt('demouser',key);
+        // const cipher = CryptoJS.AES.encrypt('password',key);
         // console.log(cipher.toString());
         return CryptoJS.AES.decrypt(loginData.password, key).toString(CryptoJS.enc.Utf8);
     }
