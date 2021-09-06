@@ -19,6 +19,6 @@ export class MyPersonalInformationPage {
     }
 
     async verifyFirstName(firstName: string): Promise<void> {
-        await webActions.verifyElementText(this.myPersonalInformationPageObjects.FIRST_NAME_ID, firstName);
+        await webActions.verifyJSElementValue(this.myPersonalInformationPageObjects.FIRST_NAME_ID, firstName);
     }
 }
