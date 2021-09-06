@@ -163,3 +163,19 @@ npm run test:report
 npx playwright show-trace trace.zip
 ```
 
+## Reports
+
+- <b>Overall Report</b>
+  ![Overall Report Screenshot][overall-report-screenshot]
+
+- <b>Detailed Report</b>
+  ![Detailed Report Screenshot][detailed-report-screenshot]
+
+- <b>Failure Report</b>
+  ![Failure Report Screenshot][failure-report-screenshot]
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[overall-report-screenshot]: ReadMeImages/OverallReport.PNG
+[detailed-report-screenshot]: ReadMeImages/DetailedReport.PNG
+[failure-report-screenshot]: ReadMeImages/FailureReport.PNG

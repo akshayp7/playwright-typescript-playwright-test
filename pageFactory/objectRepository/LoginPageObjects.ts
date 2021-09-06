@@ -1,7 +1,5 @@
 export class LoginPageObjects {
-    EMAIL_EDITBOX_XPATH = `//input[@name=' Femail']`;
-    PASSWORD_EDITBOX_XPATH = `//input[@name='password']`;
-    LOGIN_BUTTON_XPATH = `//span[text()='Login']`;
-
-
+    EMAIL_EDITBOX_ID = `#email`;
+    PASSWORD_EDITBOX_ID = `#passwd`;
+    SIGN_IN_BUTTON_ID = `#SubmitLogin`;
 }

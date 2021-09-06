@@ -15,10 +15,14 @@ export class WebActions {
         this.page = page;
     }
 
+    async navigateToURL(url: string) {
+        this.page.goto(url);
+    }
+
     async decipherPassword(): Promise<string> {
         const key = `SECRET`;
         //ENCRYPT
-        // const cipher = CryptoJS.AES.encrypt('password',key);
+        // const cipher = CryptoJS.AES.encrypt('demouat',key);
         // console.log(cipher.toString());
         return CryptoJS.AES.decrypt(loginData.password, key).toString(CryptoJS.enc.Utf8);
     }

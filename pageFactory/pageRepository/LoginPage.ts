@@ -17,17 +17,14 @@ export class LoginPage {
 
     loginPageObjects = new LoginPageObjects();
 
-    async navigateToURL() {
-        await this.page.goto(loginData.URL);
+    async navigateToURL(): Promise<void> {
+        await webActions.navigateToURL(loginData.URL);
     }
 
-    async loginToApplication() {
+    async loginToApplication(): Promise<void> {
         const decipherPassword = await webActions.decipherPassword();
-        await this.page.fill(this.loginPageObjects.EMAIL_EDITBOX_XPATH, loginData.username);
-        await this.page.fill(this.loginPageObjects.PASSWORD_EDITBOX_XPATH, decipherPassword);
-        await this.page.click(this.loginPageObjects.LOGIN_BUTTON_XPATH);
+        await webActions.enterElementText(this.loginPageObjects.EMAIL_EDITBOX_ID, loginData.username);
+        await webActions.enterElementText(this.loginPageObjects.PASSWORD_EDITBOX_ID, decipherPassword);
+        await webActions.clickElement(this.loginPageObjects.SIGN_IN_BUTTON_ID);
     }
-
-
-
 }

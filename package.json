@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "test:single": "npx playwright test Login.test.ts --project=Chrome",
-    "test:parallel": "npx playwright test --grep @Regression --project=Chrome",
-    "test:serial": "npx playwright test --grep @Regression --workers=1 --project=Chrome",
+    "test:single": "npx playwright test MyAddress.test.ts --project=Chrome",
+    "test:parallel": "npx playwright test --grep @Smoke --project=Chrome",
+    "test:serial": "npx playwright test --grep @Smoke --workers=1 --project=Chrome",
     "test:api": "npx playwright test --grep @api --workers=1 --project=Chrome",
     "test:db": "npx playwright test DB.test.ts",
     "test:record": "npx playwright codegen",
