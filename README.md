@@ -97,26 +97,26 @@ npm install
 
 ## Usage
 
-1. For Browser Configuration, change required parameters in "playwright.config.ts".
+1. For Browser Configuration, change required parameters in `playwright.config.ts`.
 2. For execution entire test suite on all available browsers simultaneously execute:
 
 ```JS
 npm run test
 ```
 
-3. For executing single test case on Chrome browser execute the below command, ypu can change the browser for execution e.g. if you want to run test cases on Firefox, you can change "--project=Firefox" against "test:single" in "package.json", just make sure the browser name given matches the name given in "playwright.config.ts".
+3. For executing single test case on Chrome browser execute the below command, ypu can change the browser for execution e.g. if you want to run test cases on Firefox, you can change `--project=Firefox` against `test:single` in `package.json`, just make sure the browser name given matches the name given in `playwright.config.ts`.
 
 ```JS
 npm run test:single
 ```
 
-4. For executing test cases in parallel, provide a suitable tag "@SmokeTest" at the start of your test case name, then in "package.json" against "test:parallel" give the tag value and execute :
+4. For executing test cases in parallel, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:parallel` give the tag value and execute :
 
 ```JS
 npm run test:parallel
 ```
 
-5. For executing test cases in sequence, provide a suitable tag "@SmokeTest" at the start of your test case name, then in "package.json" against "test:serial" give the tag value and execute, "workers" parameter correspond to test cases you want to execute simultaneously e.g. "--workers=3", executes 3 test cases simultaneously :
+5. For executing test cases in sequence, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:serial` give the tag value and execute, `workers` parameter correspond to test cases you want to execute simultaneously e.g. `--workers=3`, executes 3 test cases simultaneously :
 
 ```JS
 npm run test:serial
@@ -140,7 +140,7 @@ npm run test:record
 npm run test:visual
 ```
 
-9. For emulating test cases on any device, in "playwright.config.ts", under device section provide desired device name and execute :
+9. For emulating test cases on any device, in `playwright.config.ts`, under device section provide desired device name and execute :
 
 ```JS
 npm run test:device
@@ -162,3 +162,4 @@ npm run test:report
 ```JS
 npx playwright show-trace trace.zip
 ```
+
