@@ -98,7 +98,7 @@ npm install
 ## Usage
 
 1. For Browser Configuration, change required parameters in `playwright.config.ts`.
-2. For execution entire test suite on all available browsers simultaneously execute, `Teast Cases are present in tests folder`:
+2. For execution entire test suite on all available browsers simultaneously execute, `Teast Cases are present in "tests" folder`:
 
 ```JS
 npm run test
