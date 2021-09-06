@@ -101,7 +101,7 @@ module.exports = {
     {
       name: `Device`,
       use: {
-        ...devices[`iPhone 12 Pro Max`],
+        ...devices[`Pixel 4a (5G)`],
         browserName: `chromium`,
         headless: true,
         slowMo: 0,
