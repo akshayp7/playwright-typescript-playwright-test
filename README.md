@@ -56,7 +56,7 @@ Bonus:
 ### Built With
 
 - [Playwright](https://playwright.dev)
-- [Typescript](https://www.typesciptlang.org/)
+- [Typescript](https://www.typescriptlang.org/)
 - [Supertest](https://github.com/visionmedia/supertest)
 - [node-postgres](https://github.com/brianc/node-postgres)
 - [excel-js](https://github.com/exceljs/exceljs)
