@@ -61,3 +61,32 @@ Bonus:
 - [node-postgres](https://github.com/brianc/node-postgres)
 - [excel-js](https://github.com/exceljs/exceljs)
 - [ESLint](https://eslint.org/)
+
+## Getting Started
+
+### Prerequisites
+
+The following software are required:
+
+- nodejs
+  ```sh
+  Download and Install Node JS from https://nodejs.org/en/download/
+  ```
+- Java
+  ```sh
+  Download and Install Java 8 or above, Allure Reports require Java 8 or higher.
+  ``` 
+- allure commandline
+  ```sh
+  Install allure command line for generating Allure Reports using "npm install -g allure-commandline"
+  ``` 
+### Installation
+
+1. Clone the repo using below URL
+  ```sh
+  https://github.com/akshayp7/playwright-typescipt-playwright-test.git
+  ``` 
+2. Navigate to folder and install npm packages using:
+  ```sh
+  npm install
+  ```
