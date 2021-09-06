@@ -89,6 +89,12 @@ The following software are required:
   npm install
   ```
 
-<!-- USAGE EXAMPLES>
+<!-- USAGE EXAMPLES-->
 
 ## Usage
+
+1. For Browser Configuration, change required parameters in "playwright.config.ts".
+2. For execution entire test suite on all available browsers simultaneously execute:
+   ```JS
+   npm run test
+   ```
