@@ -74,20 +74,24 @@ The following software are required:
   ```
 - Install Java 8 or above, Allure Reports require Java 8 or higher.
 
-- allure commandline : Install allure command line for generating Allure Reports using 
+- allure commandline : Install allure command line for generating Allure Reports using
   ```sh
   npm install -g allure-commandline
-  ``` 
+  ```
+
 ### Installation
 
 1. Clone the repo using below URL
-  ```sh
-  https://github.com/akshayp7/playwright-typescipt-playwright-test.git
-  ``` 
+
+```sh
+https://github.com/akshayp7/playwright-typescipt-playwright-test.git
+```
+
 2. Navigate to folder and install npm packages using:
-  ```sh
-  npm install
-  ```
+
+```sh
+npm install
+```
 
 <!-- USAGE EXAMPLES-->
 
@@ -95,6 +99,31 @@ The following software are required:
 
 1. For Browser Configuration, change required parameters in "playwright.config.ts".
 2. For execution entire test suite on all available browsers simultaneously execute:
-   ```JS
-   npm run test
-   ```
+   
+```JS
+npm run test
+```
+
+3. For executing single test case on Chrome browser execute the below command, ypu can change the browser for execution e.g. if you want to run test cases on Firefox, you can change "--project=Firefox" against "test:single" in "package.json", just make sure the browser name given matches the name given in "playwright.config.ts".
+
+```JS
+npm run test:single
+```
+
+4. For executing test cases in parallel, provide a suitable tag "@SmokeTest" at the start of your test case name, then in "package.json" against "test:parallel" give the tag value and execute :
+
+```JS
+npm run test:parallel
+```
+
+5. For executing test cases in sequence, provide a suitable tag "@SmokeTest" at the start of your test case name, then in "package.json" against "test:serial" give the tag value and execute, "workers" parameter correspond to test cases you want to execute simultaneously e.g. "--workers=3", executes 3 test cases simultaneously :
+
+```JS
+npm run test:serial
+```
+
+6. For executing API test cases :
+
+```JS
+npm run test:api
+```
