@@ -72,7 +72,7 @@ The following software are required:
   ```sh
   https://nodejs.org/en/download/
   ```
-- Java Download and Install Java 8 or above, Allure Reports require Java 8 or higher.: 
+- Install Java 8 or above, Allure Reports require Java 8 or higher.
 
 - allure commandline : Install allure command line for generating Allure Reports using 
   ```sh
@@ -88,3 +88,7 @@ The following software are required:
   ```sh
   npm install
   ```
+
+<!-- USAGE EXAMPLES>
+
+## Usage
