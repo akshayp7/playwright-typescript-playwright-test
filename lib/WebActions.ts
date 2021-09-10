@@ -128,6 +128,11 @@ export class WebActions {
         expect(textValue.trim()).toBe(text);
     }
 
+    async verifyElementContainsTest(locator: string, text: string): Promise<void> {
+        await this.waitForElementAttached(locator);
+        await expect(this.page.locator(locator)).toContainText(text);
+    }
+
     async verifyJSElementValue(locator: string, text: string): Promise<void> {
         await this.waitForElementAttached(locator);
         const textValue = await this.page.$eval(locator, (element: HTMLInputElement) => element.value);

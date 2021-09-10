@@ -24,8 +24,8 @@
   "dependencies": {
     "@playwright/test": "^1.14.1",
     "@types/crypto-js": "^4.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
     "crypto-js": "^4.1.1",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.2",
