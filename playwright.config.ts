@@ -2,13 +2,13 @@ import { devices } from 'playwright';
 
 module.exports = {
   //sets timeout for each test case
-  timeout: 300000,
+  timeout: 120000,
 
   //number of retries if test case fails
   retries: 0,
 
   //Reporters
-  reporter: [[`list`], [`experimental-allure-playwright`]],
+  reporter: [[`./CustomReporterConfig.ts`], [`experimental-allure-playwright`]],
 
   projects: [
     {

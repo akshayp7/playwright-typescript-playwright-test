@@ -158,10 +158,10 @@ npm run test:report
 14. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testData.json` against `password` field. You can comment Encrypt bloack ater this.
 15. For executing Postgres DB test case, navigate to `testData.json` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
 16. For viewing trace files, go to folder where `trace.zip` is generated and execute :
-
 ```JS
 npx playwright show-trace trace.zip
 ```
+17. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
 
 ## Reports
 
