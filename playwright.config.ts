@@ -1,11 +1,17 @@
 import { devices } from 'playwright';
 
 module.exports = {
+
+  //Global Setup
+  globalSetup: require.resolve(`./global-setup`),
+
   //sets timeout for each test case
   timeout: 120000,
 
   //number of retries if test case fails
   retries: 0,
+
+
 
   //Reporters
   reporter: [[`./CustomReporterConfig.ts`], [`experimental-allure-playwright`]],
@@ -112,5 +118,8 @@ module.exports = {
         trace: `retain-on-failure`,
       },
     },
+    {
+      name: `DB`
+    }
   ],
 };

@@ -128,7 +128,7 @@ export class WebActions {
         expect(textValue.trim()).toBe(text);
     }
 
-    async verifyElementContainsTest(locator: string, text: string): Promise<void> {
+    async verifyElementContainsText(locator: string, text: string): Promise<void> {
         await this.waitForElementAttached(locator);
         await expect(this.page.locator(locator)).toContainText(text);
     }
