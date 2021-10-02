@@ -1,4 +1,4 @@
-import { Reporter, TestCase, TestResult, TestStep } from "@playwright/test/reporter";
+import { Reporter, TestCase, TestError, TestResult, TestStep } from "@playwright/test/reporter";
 
 export default class CustomReporterConfig {
 
