@@ -1,11 +1,12 @@
 import supertest from 'supertest';
 import { APIActions } from '../../lib/APIActions';
+import { testConfig } from '../../testConfig';
 import { test, expect } from '@playwright/test';
 
 const apiActions = new APIActions();
 
 test(`@API getTodos`, async () => {
-    const request = supertest(`https://jsonplaceholder.typicode.com`);
+    const request = supertest(testConfig.qaApi);
     const response = await request.get(`/todos/1`);
     await apiActions.verifyStatusCode(response.status, 200, expect.getState().currentTestName);
 

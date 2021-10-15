@@ -98,34 +98,34 @@ npm install
 ## Usage
 
 1. For Browser Configuration, change required parameters in `playwright.config.ts`.
-2. For execution entire test suite on all available browsers simultaneously execute, `Test Cases are present in "tests" folder`:
+2. For execution entire test suite on all available browsers simultaneously execute below command where "ENV" can be "qa" or "dev", `Test Cases are present in "tests" folder`:
 
 ```JS
-npm run test
+npx cross-env ENV=qa npm run test
 ```
 
 3. For executing single test case on Chrome browser execute the below command, you can change the browser for execution e.g. if you want to run test cases on Firefox, you can change `--project=Firefox` against `test:single` in `package.json`, just make sure the browser name given matches the name given in `playwright.config.ts`.
 
 ```JS
-npm run test:single
+npx cross-env ENV=qa npm run test:single
 ```
 
 4. For executing test cases in parallel, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:parallel` give the tag value and execute :
 
 ```JS
-npm run test:parallel
+npx cross-env ENV=qa npm run test:parallel
 ```
 
 5. For executing test cases in sequence, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:serial` give the tag value and execute, `workers` parameter correspond to test cases you want to execute simultaneously e.g. `--workers=3`, executes 3 test cases simultaneously :
 
 ```JS
-npm run test:serial
+npx cross-env ENV=qa npm run test:serial
 ```
 
-6. For executing API test cases :
+6. For executing API test cases, please provide "ENV" value as "qaApi" or "devApi" :
 
 ```JS
-npm run test:api
+npx cross-env ENV=qaApi npm run test:api
 ```
 
 7. For recording test scripts :
@@ -137,13 +137,13 @@ npm run test:record
 8. To produce and visually compare screenshots execute below command. On first execution reference screenshot will be generated for comparision with subsequent runs.
 
 ```JS
-npm run test:visual
+npx cross-env ENV=qa npm run test:visual
 ```
 
 9. For emulating test cases on any device, in `playwright.config.ts`, under device section provide desired device name and execute :
 
 ```JS
-npm run test:device
+npx cross-env ENV=qa npm run test:device
 ```
 
 10. For Report generation execute :
@@ -154,9 +154,9 @@ npm run test:report
 
 11. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
 12. Screenshots, Videos and Trace files will be generated in test-results folder.
-13. To change your username go to `testData.json` and provide value against `username`
-14. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testData.json` against `password` field. You can comment Encrypt bloack ater this.
-15. For executing Postgres DB test case, navigate to `testData.json` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
+13. To change your username go to `testConfig.ts` and provide value against `username`
+14. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
+15. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
 16. For viewing trace files, go to folder where `trace.zip` is generated and execute :
 ```JS
 npx playwright show-trace trace.zip

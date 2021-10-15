@@ -1,6 +1,14 @@
 import { devices } from 'playwright';
+import { PlaywrightTestConfig } from '@playwright/test';
+import { testConfig } from './testConfig';
+const ENV = process.env.ENV;
 
-module.exports = {
+if (!ENV || ![`qa`, `dev`, `qaApi`, `devApi`].includes(ENV)) {
+  console.log(`Please provide a correct environment value like "npx cross-env ENV=qa|dev|qaApi|devApi"`);
+  process.exit();
+}
+
+const config: PlaywrightTestConfig = {
 
   //Global Setup
   globalSetup: require.resolve(`./global-setup`),
@@ -10,8 +18,6 @@ module.exports = {
 
   //number of retries if test case fails
   retries: 0,
-
-
 
   //Reporters
   reporter: [[`./CustomReporterConfig.ts`], [`experimental-allure-playwright`]],
@@ -26,11 +32,11 @@ module.exports = {
         //Chrome Browser Config
         channel: `chrome`,
 
+        //Picks Base Url based on User input
+        baseURL: testConfig[process.env.ENV],
+
         //Browser Mode
         headless: false,
-
-        //Slows down execution by ms
-        slowMo: 0,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },
@@ -43,20 +49,28 @@ module.exports = {
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
+
+        //Slows down execution by ms
+        launchOptions: {
+          slowMo: 0
+        }
       },
     },
     {
       name: `Chromium`,
       use: {
         browserName: `chromium`,
+        baseURL: testConfig[process.env.ENV],
         headless: true,
-        slowMo: 0,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
         acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
       },
     },
 
@@ -64,14 +78,17 @@ module.exports = {
       name: `Firefox`,
       use: {
         browserName: `firefox`,
+        baseURL: testConfig[process.env.ENV],
         headless: true,
-        slowMo: 0,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
         acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
       },
     },
 
@@ -80,28 +97,34 @@ module.exports = {
       use: {
         browserName: `chromium`,
         channel: `msedge`,
+        baseURL: testConfig[process.env.ENV],
         headless: false,
-        slowMo: 0,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
         acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
       },
     },
     {
       name: `WebKit`,
       use: {
         browserName: `webkit`,
+        baseURL: testConfig[process.env.ENV],
         headless: true,
-        slowMo: 0,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
         acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
       },
     },
     {
@@ -109,13 +132,16 @@ module.exports = {
       use: {
         ...devices[`Pixel 4a (5G)`],
         browserName: `chromium`,
+        baseURL: testConfig[process.env.ENV],
         headless: true,
-        slowMo: 0,
         ignoreHTTPSErrors: true,
         acceptDownloads: true,
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
       },
     },
     {
@@ -123,3 +149,4 @@ module.exports = {
     }
   ],
 };
+export default config;

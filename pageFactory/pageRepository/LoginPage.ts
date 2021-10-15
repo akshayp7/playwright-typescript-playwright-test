@@ -1,9 +1,7 @@
 import { LoginPageObjects } from "../objectRepository/LoginPageObjects";
 import { WebActions } from "../../lib/WebActions";
 import type { Page } from 'playwright';
-import fs from 'fs';
-
-const loginData = JSON.parse(fs.readFileSync('./testData.json', 'utf-8'));
+import {testConfig} from '../../testConfig';
 
 let webActions: WebActions;
 
@@ -18,12 +16,12 @@ export class LoginPage {
     loginPageObjects = new LoginPageObjects();
 
     async navigateToURL(): Promise<void> {
-        await webActions.navigateToURL(loginData.URL);
+        await webActions.navigateToURL(`/index.php?controller=authentication&back=my-account`);
     }
 
     async loginToApplication(): Promise<void> {
         const decipherPassword = await webActions.decipherPassword();
-        await webActions.enterElementText(this.loginPageObjects.EMAIL_EDITBOX_ID, loginData.username);
+        await webActions.enterElementText(this.loginPageObjects.EMAIL_EDITBOX_ID, testConfig.username);
         await webActions.enterElementText(this.loginPageObjects.PASSWORD_EDITBOX_ID, decipherPassword);
         await webActions.clickElement(this.loginPageObjects.SIGN_IN_BUTTON_ID);
     }

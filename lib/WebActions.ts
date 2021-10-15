@@ -3,10 +3,9 @@ import * as CryptoJS from 'crypto-js';
 import type { Page } from 'playwright';
 import { expect } from '@playwright/test';
 import { Workbook } from 'exceljs';
+import { testConfig } from '../testConfig';
 import path from 'path';
-
-const loginData = JSON.parse(fs.readFileSync(`./testData.json`, `utf-8`));
-const waitForElement = parseInt(JSON.parse(fs.readFileSync(`./testData.json`, `utf-8`)).waitForElement);
+const waitForElement = testConfig.waitForElement;
 
 export class WebActions {
     readonly page: Page;
@@ -24,7 +23,7 @@ export class WebActions {
         //ENCRYPT
         // const cipher = CryptoJS.AES.encrypt('demouat',key);
         // console.log(cipher.toString());
-        return CryptoJS.AES.decrypt(loginData.password, key).toString(CryptoJS.enc.Utf8);
+        return CryptoJS.AES.decrypt(testConfig.password, key).toString(CryptoJS.enc.Utf8);
     }
 
     async waitForElementAttached(locator: string): Promise<void> {
