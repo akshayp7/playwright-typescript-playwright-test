@@ -146,22 +146,26 @@ npx cross-env ENV=qa npm run test:visual
 npx cross-env ENV=qa npm run test:device
 ```
 
-10. For Report generation execute :
+10. For Allure Report generation execute :
 
 ```JS
-npm run test:report
+npm run allureReport
 ```
+11. For HTML Report generation execute :
 
-11. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
-12. Screenshots, Videos and Trace files will be generated in test-results folder.
-13. To change your username go to `testConfig.ts` and provide value against `username`
-14. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
-15. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
-16. For viewing trace files, go to folder where `trace.zip` is generated and execute :
+```JS
+npm run htmlReport
+```
+12. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
+13. Screenshots, Videos and Trace files will be generated in test-results folder.
+14. To change your username go to `testConfig.ts` and provide value against `username`
+15. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
+16. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
+17. For viewing trace files, go to folder where `trace.zip` is generated and execute :
 ```JS
 npx playwright show-trace trace.zip
 ```
-17. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
+18. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
 
 ## Reports
 
