@@ -146,6 +146,12 @@ const config: PlaywrightTestConfig = {
     },
     {
       name: `DB`
+    },
+    {
+      name: `API`,
+      use: {
+        baseURL: testConfig[process.env.ENV]
+      }
     }
   ],
 };

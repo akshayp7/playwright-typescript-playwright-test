@@ -1,3 +1,4 @@
 {"name": "morpheus","job": "leader"}#
 |name|job|id|createdAt#
-"date":|"content-type":"application/json; charset=utf-8"|"content-length":|"connection":"close"|"x-powered-by":"Express"|"access-control-allow-origin":|"via"|cf-cache-status"|"report-to"
+Date, Content-Type, Content-Length, Connection, x-powered-by, access-control-allow-origin, etag, via, CF-Cache-Status, 
+Expect-CT, Report-To, NEL, Server, CF-RAY, alt-svc

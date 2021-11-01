@@ -3,16 +3,16 @@ import { expect } from '@playwright/test';
 
 export class APIActions {
 
-    async verifyStatusCode(actual: number, expected: number, apiName: string): Promise<void> {
+    async verifyStatusCode(actual: number, expected: number): Promise<void> {
         try {
             expect(actual).toBe(expected);
         }
         catch (exception) {
-            throw new Error(`${expected} status code was not displayed for ${apiName}`);
+            throw new Error(`${expected} status code was not displayed.`);
         }
     }
 
-    async verifyResponseBody(expectedResponseBodyParams: string, responsePart: JSON, apiName: string, responseType: string): Promise<void> {
+    async verifyResponseBody(expectedResponseBodyParams: string, responsePart: JSON, responseType: string): Promise<void> {
         let status = true;
         let fieldNames = `Parameter`;
         const headers = expectedResponseBodyParams.split("|");
@@ -28,7 +28,25 @@ export class APIActions {
             expect(status).toBe(true);
         }
         catch (exception) {
-            throw new Error(`${fieldNames} was not present in ${responseType} for ${apiName}`);
+            throw new Error(`${fieldNames} was not present in ${responseType}`);
+        }
+    }
+
+    async verifyResponseHeader(expectedResponseHeaderParams: string, responsePart: Array<{ name: string, value: string }>, responseType: string): Promise<void> {
+        let status = true;
+        let fieldNames = `Parameter`;
+        for (let i = 0; i < responsePart.length; i++) {
+            if (!(expectedResponseHeaderParams.includes(responsePart[i].name.trim()))) {
+                status = false;
+                fieldNames = fieldNames + ' ,' + responsePart[i].name;
+                break;
+            }
+        }
+        try {
+            expect(status).toBe(true);
+        }
+        catch (exception) {
+            throw new Error(`${fieldNames} was not present in ${responseType}`);
         }
     }
 
