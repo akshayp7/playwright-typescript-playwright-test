@@ -1,4 +1,4 @@
-import test from '../../lib/BasePages';
+import test from '../../lib/BaseTest';
 
 test(`Login to PHP travels.`, async ({ loginPage, myAccountPage }) => {
     await loginPage.navigateToURL();

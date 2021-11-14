@@ -85,7 +85,7 @@ export class WebActions {
 
     async getTextFromWebElements(locator: string): Promise<string[]> {
         await this.waitForElementAttached(locator);
-        return await this.page.$$eval(locator, elements => elements.map(item => item.textContent.trim()));
+        return this.page.$$eval(locator, elements => elements.map(item => item.textContent.trim()));
     }
 
     async downloadFile(locator: string): Promise<string> {
@@ -103,11 +103,10 @@ export class WebActions {
 
     async readDataFromExcel(fileName: string, sheetName: string, rowNum: number, cellNum: number): Promise<string> {
         const workbook = new Workbook();
-        const data = await workbook.xlsx.readFile(`./Downloads/${fileName}`).then(function () {
+        return workbook.xlsx.readFile(`./Downloads/${fileName}`).then(function () {
             const sheet = workbook.getWorksheet(sheetName);
             return sheet.getRow(rowNum).getCell(cellNum).toString();
         });
-        return data;
     }
 
     async readValuesFromTextFile(filePath: string): Promise<string> {

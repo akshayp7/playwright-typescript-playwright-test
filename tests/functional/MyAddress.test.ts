@@ -1,4 +1,4 @@
-import test from '../../lib/BasePages';
+import test from '../../lib/BaseTest';
 
 // We can use Steps like in Cucmber format as shown below
 

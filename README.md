@@ -19,6 +19,7 @@
             </li>
             <li><a href="#usage">Usage</a></li>
             <li><a href="#reports">Reports</a></li>
+            <li><a href="#sonar">SonarQube</a></li>
           </ol>
         </h5>    
     </details>
@@ -39,17 +40,17 @@ Top Features:
 - Generates trace file, which gives in-depth details of Test Case execution.
 - Execution of test case is faster when compared with other competitive framework in market.
 - Supports Headful/Headless mode execution for Firefox/Webkit/Google Chrome/Chromium/MS Edge on Windows/Linux/Mac machines.
+- It supports API testing (From Playwright version 1.16 onwards)
 - It can be used to simulate browser behaviour on mobile devices, and supports over 100+ devices.
 - It has ability to produce and visually compare screenshots.
 - To slow down execution slowMo option is available.
 - Supports 'download' event monitoring, so there is no need for user to actually wait for downloads to finish.
 - Supports Serial and Parallel execution.
-- Allure Reports are generated after execution with an option to capture screenshot/video/trace file on failure.
+- Allure/HTML Reports are generated after execution with an option to capture screenshot/video/trace file on failure.
 - Nonetheless Support from Microsoft so FREQUENT RELEASES and turn arounf time for any queries is 48 hours.
 
 Bonus:
 
-- Supports API testing using 'supertest' module.
 - Supports PostgresSQL using 'pg' module.
 - Supports Excel File Read/Write using 'excel-js' module.
 
@@ -57,10 +58,10 @@ Bonus:
 
 - [Playwright](https://playwright.dev)
 - [Typescript](https://www.typescriptlang.org/)
-- [Supertest](https://github.com/visionmedia/supertest)
 - [node-postgres](https://github.com/brianc/node-postgres)
 - [excel-js](https://github.com/exceljs/exceljs)
 - [ESLint](https://eslint.org/)
+- [SonarQube](https://www.sonarqube.org/)
 
 ## Getting Started
 
@@ -73,10 +74,20 @@ The following software are required:
   https://nodejs.org/en/download/
   ```
 - Install Java 8 or above, Allure Reports require Java 8 or higher.
-
+- Install Java 11 instead of Java 8 if you intend to use Sonar Qube.
 - allure commandline : Install allure command line for generating Allure Reports using
   ```sh
   npm install -g allure-commandline
+  ```
+- If you wish to include SonarQube follow the below steps:
+  - Install Java 11 and add java path to "PATH" environment variable.
+  - Download SonarQube community server from the below url and unzip it to desired location.
+  ```sh
+  https://www.sonarqube.org/downloads/
+  ```
+  - Download Sonar Scanner for your desired OS (Windows in my case) from below location and unzip it to desired location. Then navigate to bin location once unzipped and provide the path to "PATH" environment variable.
+  ```sh
+  https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
   ```
 
 ### Installation
@@ -178,8 +189,37 @@ npx playwright show-trace trace.zip
 - <b>Failure Report</b>
   ![Failure Report Screenshot][failure-report-screenshot]
 
+## SonarQube
+
+Once you have completed setup for SonarQube given in Prerequisites section, configure SonarQube as given below
+- Go to the path where sonarqube server(For e.g. : C:\SonarQube\sonarqube-9.1.0.47736) is unzipped -> Go to conf Folder -> open sonar.properties file and add the below prperties and save the file, you can give any port you wish I have used port 9000.
+```JS
+sonar.host.url=http://localhost:9000
+sonar.sourceEncoding=UTF-8
+```
+- Go to the path where sonarqube server(For e.g. : C:\SonarQube\sonarqube-9.1.0.47736) is unzipped -> Go to bin section -> Go to the folder as per the OS you are using , in my case windows-x86-64 -> Double click on Start Sonar and wait for it to display SonarQube is up (you might encounter some java errors but its fine don't close the terminal).
+- Go to the browser and naigate to http://localhost:9000 , default username is `admin`, default password is `admin`. It might ask you to provide a new password for if you have logged in for first time, I have changed default password to `password`.
+- In your working project (playwright-typescipt-playwright-test), navigate to `sonar-project.properties` file and provide the credentials configured on server webpage username value in `sonar.login` and password in `sonar.password`, in my case username is `admin` and password was changed to `password`.
+```JS
+sonar.login=admin
+sonar.password=password
+```
+- You can provide any project name in `sonar.projectKey`.
+- Specify a version in `sonar.projectVersion`.
+- Provide `UTF-8` in `sonar.sourceEncoding`.
+- In `sonar.language` provide the language you want to run scan on (For e.g. for typescipt its ts and for javascript its js).
+- If you have eslint file in your project provide the location in `sonar.eslint.eslintconfigpath`.
+- You can exclude file from scanning like node_modules, results , Downloads section in `sonar.exclusions`.
+- You can give your project location in `sonar.sources` section I have provided it as `./` because my `sonar-project.properties` file is within my project. If your properties files is somewhere else you have to provide the complete project path.
+- Now go to the location where `sonar-project.properties` is present and run `sonar-scanner` command (In my case I will diectly run it inside my project), and wait for scan to get over with success message.
+- Now navigate to `http://localhost:9000/` and click on your project key displayed and go to Issues section, you can find all the suggestions and issues here. You can fix the issues ans rerun `sonar-scanner` command once again.
+- <b>SonarQube Report</b>
+  ![SonarQube Report Screenshot][sonar-report-screenshot]
+
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [overall-report-screenshot]: ReadMeImages/OverallReport.PNG
 [detailed-report-screenshot]: ReadMeImages/DetailedReport.PNG
 [failure-report-screenshot]: ReadMeImages/FailureReport.PNG
+[sonar-report-screenshot]: ReadMeImages/SonarReport.PNG
+

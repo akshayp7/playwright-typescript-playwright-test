@@ -1,4 +1,3 @@
-import pg from 'pg';
 import type { Client } from 'pg';
 
 let pgClient: Client;
@@ -12,6 +11,6 @@ export class DBActions {
     }
 
     async query(queryString: string): Promise<void> {
-        return await pgClient.query(queryString);
+        return pgClient.query(queryString);
     }
 }

@@ -1,7 +1,6 @@
 import { MyAccountPageObjects } from "../objectRepository/MyAccountPageObjects";
 import { WebActions } from "../../lib/WebActions";
 import type { Page } from 'playwright';
-import fs from 'fs';
 
 let webActions: WebActions;
 

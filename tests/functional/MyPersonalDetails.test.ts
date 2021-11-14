@@ -1,4 +1,4 @@
-import test from '../../lib/BasePages';
+import test from '../../lib/BaseTest';
 
 test(`@Smoke Verify My Personal Information.`, async ({ loginPage, myAccountPage, myPersonalInformationPage }) => {
     await loginPage.navigateToURL();

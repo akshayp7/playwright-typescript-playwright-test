@@ -17,10 +17,10 @@ export class APIActions {
         let fieldNames = `Parameter`;
         const headers = expectedResponseBodyParams.split("|");
         const responseToString = JSON.stringify(responsePart).trim();
-        for (let i = 0; i < headers.length; i++) {
-            if (!(responseToString.includes(headers[i].trim()))) {
+        for (let headerKey of headers) {
+            if (!(responseToString.includes(headerKey.trim()))) {
                 status = false;
-                fieldNames = fieldNames + `, ` + headers[i];
+                fieldNames = fieldNames + `, ` + headerKey;
                 break;
             }
         }
@@ -35,10 +35,10 @@ export class APIActions {
     async verifyResponseHeader(expectedResponseHeaderParams: string, responsePart: Array<{ name: string, value: string }>, responseType: string): Promise<void> {
         let status = true;
         let fieldNames = `Parameter`;
-        for (let i = 0; i < responsePart.length; i++) {
-            if (!(expectedResponseHeaderParams.includes(responsePart[i].name.trim()))) {
+        for (let responseKey of responsePart) {
+            if (!(expectedResponseHeaderParams.includes(responseKey.name.trim()))) {
                 status = false;
-                fieldNames = fieldNames + ' ,' + responsePart[i].name;
+                fieldNames = fieldNames + ' ,' + responseKey.name;
                 break;
             }
         }

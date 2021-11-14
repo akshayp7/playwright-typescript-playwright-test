@@ -6,5 +6,5 @@ test('Connect to Postgres DB', async () => {
     const dbConnection = new DBActions();
     await dbConnection.connectDB(testConfig.dbUsername, testConfig.dbPassword, testConfig.dbServerName,
         testConfig.dbPort, testConfig.dbName);
-    const query = await dbConnection.query(`SELECT * FROM TABLE`);
+    await dbConnection.query(`SELECT * FROM TABLE`);
 });
