@@ -19,7 +19,7 @@
             </li>
             <li><a href="#usage">Usage</a></li>
             <li><a href="#reports">Reports</a></li>
-            <li><a href="#sonar">SonarQube</a></li>
+            <li><a href="#sonarqube">SonarQube</a></li>
           </ol>
         </h5>    
     </details>
