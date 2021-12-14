@@ -80,10 +80,6 @@ The following software are required:
   ```sh
   npm install -g allure-commandline
   ```
-- Install adm-zip which allows user to create zip files, in this framework html-report are zipped along with video and trace files so that it can be sent across as single zip file
- ```sh
-  npm i adm-zip
- ```
 - If you wish to include SonarQube follow the below steps:
   - Install Java 11 and add java path to "PATH" environment variable.
   - Download SonarQube community server from the below url and unzip it to desired location.
