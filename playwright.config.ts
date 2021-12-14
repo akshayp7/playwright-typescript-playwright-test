@@ -10,8 +10,11 @@ if (!ENV || ![`qa`, `dev`, `qaApi`, `devApi`].includes(ENV)) {
 
 const config: PlaywrightTestConfig = {
 
-  //Global Setup
-  globalSetup: require.resolve(`./global-setup`),
+  //Global Setup to run before all tests
+  globalSetup: `./global-setup`,
+
+  //Global Teardown to run after all tests
+  globalTeardown: `./global-teardown`,
 
   //sets timeout for each test case
   timeout: 120000,
@@ -20,7 +23,7 @@ const config: PlaywrightTestConfig = {
   retries: 0,
 
   //Reporters
-  reporter: [[`./CustomReporterConfig.ts`], [`experimental-allure-playwright`], [`html`, { outputFolder: 'html-report' }]],
+  reporter: [[`./CustomReporterConfig.ts`], [`experimental-allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }]],
 
   projects: [
     {
@@ -36,7 +39,7 @@ const config: PlaywrightTestConfig = {
         baseURL: testConfig[process.env.ENV],
 
         //Browser Mode
-        headless: false,
+        headless: true,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },

@@ -60,6 +60,7 @@ Bonus:
 - [Typescript](https://www.typescriptlang.org/)
 - [node-postgres](https://github.com/brianc/node-postgres)
 - [excel-js](https://github.com/exceljs/exceljs)
+- [adm-zip](https://www.npmjs.com/package/adm-zip)
 - [ESLint](https://eslint.org/)
 - [SonarQube](https://www.sonarqube.org/)
 
@@ -79,6 +80,10 @@ The following software are required:
   ```sh
   npm install -g allure-commandline
   ```
+- Install adm-zip which allows user to create zip files, in this framework html-report are zipped along with video and trace files so that it can be sent across as single zip file
+ ```sh
+  npm i adm-zip
+ ```
 - If you wish to include SonarQube follow the below steps:
   - Install Java 11 and add java path to "PATH" environment variable.
   - Download SonarQube community server from the below url and unzip it to desired location.
@@ -162,21 +167,18 @@ npx cross-env ENV=qa npm run test:device
 ```JS
 npm run allureReport
 ```
-11. For HTML Report generation execute :
-
-```JS
-npm run htmlReport
-```
-12. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
-13. Screenshots, Videos and Trace files will be generated in test-results folder.
-14. To change your username go to `testConfig.ts` and provide value against `username`
-15. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
-16. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
-17. For viewing trace files, go to folder where `trace.zip` is generated and execute :
+11. For HTML Report generation execute below command , single static HTML report(index.html) which can be sent via email is generated in "html-report" folder:
+12. For converting HTML Reports to zip file "adm-zip" library is used, the logic is implemented in `global-teardown.ts` , to make sure this runs after all the test are executed and after reports are generated, `global-teardown.ts` is given as a parameter for "globalTeardown" in `playwright.config.ts` file. Results are generated as `html-report.zip` in project directory. 
+13. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
+14. Screenshots, Videos and Trace files will be generated in test-results folder.
+15. To change your username go to `testConfig.ts` and provide value against `username`
+16. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
+17. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
+18. For viewing trace files, go to folder where `trace.zip` is generated and execute :
 ```JS
 npx playwright show-trace trace.zip
 ```
-18. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
+19. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
 
 ## Reports
 
@@ -222,4 +224,3 @@ sonar.password=password
 [detailed-report-screenshot]: ReadMeImages/DetailedReport.PNG
 [failure-report-screenshot]: ReadMeImages/FailureReport.PNG
 [sonar-report-screenshot]: ReadMeImages/SonarReport.PNG
-

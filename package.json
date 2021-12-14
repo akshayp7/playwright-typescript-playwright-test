@@ -13,8 +13,7 @@
     "test:record": "npx playwright codegen",
     "test:visual": "npx playwright test visualComparision.test.ts --project=Chrome",
     "test:device": "npx playwright test Emulation.test.ts --project=Device",
-    "allureReport": "allure serve",
-    "htmlReport": "npx playwright show-report html-report"
+    "allureReport": "allure serve"
   },
   "repository": {
     "type": "git",
@@ -24,9 +23,11 @@
   "license": "MIT",
   "dependencies": {
     "@playwright/test": "^1.17.1",
+    "@types/adm-zip": "^0.4.34",
     "@types/crypto-js": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
+    "adm-zip": "^0.5.9",
     "cross-env": "^7.0.3",
     "crypto-js": "^4.1.1",
     "eslint": "^8.4.0",
