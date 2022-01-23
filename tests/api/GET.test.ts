@@ -5,7 +5,7 @@ const apiActions = new APIActions();
 
 test(`@API getUsers`, async ({ request }) => {
     const response = await request.get(`/api/users?per_page=1`);
-    await apiActions.verifyStatusCode(response.status(), 200);
+    await apiActions.verifyStatusCode(response);
 
     //* Body Response Params and Body Response Headers are stored in single text file separated by #
     const responseBodyParams = (await apiActions.readValuesFromTextFile(`getUsers`)).split(`#`)[0];

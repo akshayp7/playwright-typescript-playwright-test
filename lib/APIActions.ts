@@ -1,14 +1,14 @@
 import fs from 'fs';
-import { expect } from '@playwright/test';
+import { APIResponse, expect } from '@playwright/test';
 
 export class APIActions {
 
-    async verifyStatusCode(actual: number, expected: number): Promise<void> {
+    async verifyStatusCode(response:APIResponse): Promise<void> {
         try {
-            expect(actual).toBe(expected);
+            await expect(response).toBeOK();
         }
         catch (exception) {
-            throw new Error(`${expected} status code was not displayed.`);
+            throw new Error(`200 Status code was not displayed.`);
         }
     }
 

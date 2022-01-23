@@ -53,6 +53,7 @@ Bonus:
 
 - Supports PostgresSQL using 'pg' module.
 - Supports Excel File Read/Write using 'excel-js' module.
+- Converts HTL Reports to Zip format which can shared across.
 
 ### Built With
 

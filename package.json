@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
-    "test:single": "npx playwright test GET.test.ts --project=API",
+    "test:single": "npx playwright test POST.test.ts --project=API",
     "test:parallel": "npx playwright test --grep @Smoke --project=Chrome",
     "test:serial": "npx playwright test --grep @Smoke --workers=1 --project=Chrome",
     "test:api": "npx playwright test --grep @api --workers=1 --project=Chrome",
@@ -22,20 +22,20 @@
   "author": "Akshay Pai",
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.17.1",
+    "@playwright/test": "^1.18.0",
     "@types/adm-zip": "^0.4.34",
-    "@types/crypto-js": "^4.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.5.0",
-    "@typescript-eslint/parser": "^5.5.0",
+    "@types/crypto-js": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "adm-zip": "^0.5.9",
     "cross-env": "^7.0.3",
     "crypto-js": "^4.1.1",
-    "eslint": "^8.4.0",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint": "^8.7.0",
+    "eslint-plugin-import": "^2.25.4",
     "exceljs": "^4.3.0",
     "experimental-allure-playwright": "0.0.3",
     "pg": "^8.7.1",
-    "playwright": "^1.17.1",
-    "typescript": "^4.5.2"
+    "playwright": "^1.18.0",
+    "typescript": "^4.5.5"
   }
 }
