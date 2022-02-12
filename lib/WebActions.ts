@@ -149,20 +149,10 @@ export class WebActions {
     }
 
     async expectToBeTrue(status: boolean, errorMessage: string): Promise<void> {
-        try {
-            expect(status).toBe(true);
-        }
-        catch (exception) {
-            throw new Error(`${errorMessage}`);
-        }
+        expect(status, `${errorMessage}`).toBe(true);
     }
 
     async expectToBeValue(expectedValue: string, actualValue: string, errorMessage: string): Promise<void> {
-        try {
-            expect(expectedValue.trim()).toBe(actualValue);
-        }
-        catch (exception) {
-            throw new Error(`${errorMessage}`);
-        }
+        expect(expectedValue.trim(), `${errorMessage}`).toBe(actualValue);
     }
 }

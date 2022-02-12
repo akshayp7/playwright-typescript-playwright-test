@@ -3,13 +3,8 @@ import { APIResponse, expect } from '@playwright/test';
 
 export class APIActions {
 
-    async verifyStatusCode(response:APIResponse): Promise<void> {
-        try {
-            await expect(response).toBeOK();
-        }
-        catch (exception) {
-            throw new Error(`200 Status code was not displayed.`);
-        }
+    async verifyStatusCode(response: APIResponse): Promise<void> {
+        await expect(response, `200 Status code was not displayed.`).toBeOK();
     }
 
     async verifyResponseBody(expectedResponseBodyParams: string, responsePart: JSON, responseType: string): Promise<void> {
@@ -24,12 +19,7 @@ export class APIActions {
                 break;
             }
         }
-        try {
-            expect(status).toBe(true);
-        }
-        catch (exception) {
-            throw new Error(`${fieldNames} was not present in ${responseType}`);
-        }
+        expect(status, `${fieldNames} was not present in ${responseType}`).toBe(true);
     }
 
     async verifyResponseHeader(expectedResponseHeaderParams: string, responsePart: Array<{ name: string, value: string }>, responseType: string): Promise<void> {
@@ -42,12 +32,7 @@ export class APIActions {
                 break;
             }
         }
-        try {
-            expect(status).toBe(true);
-        }
-        catch (exception) {
-            throw new Error(`${fieldNames} was not present in ${responseType}`);
-        }
+        expect(status, `${fieldNames} was not present in ${responseType}`).toBe(true);
     }
 
     async readValuesFromTextFile(fileName: string): Promise<string> {
