@@ -39,7 +39,7 @@ const config: PlaywrightTestConfig = {
         baseURL: testConfig[process.env.ENV],
 
         //Browser Mode
-        headless: true,
+        headless: false,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },

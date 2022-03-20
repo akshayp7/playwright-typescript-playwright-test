@@ -1,5 +1,5 @@
-import { LoginPage } from "../../pageFactory/pageRepository/LoginPage";
-import { MyAccountPage } from "../../pageFactory/pageRepository/MyAccountPage";
+import { LoginPage } from "@pages/LoginPage";
+import { MyAccountPage } from "@pages/MyAccountPage";
 import { expect, test } from '@playwright/test';
 
 test(`Verify User Login.`, async ({ page }) => {

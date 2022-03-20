@@ -1,8 +1,8 @@
 import { test as baseTest } from '@playwright/test';
-import { LoginPage } from '../pageFactory/pageRepository/LoginPage';
-import { MyAccountPage } from '../pageFactory/pageRepository/MyAccountPage';
-import { MyAddressesPage } from '../pageFactory/pageRepository/MyAddressesPage'
-import { MyPersonalInformationPage } from '../pageFactory/pageRepository/MyPersonalInformationPage';
+import { LoginPage } from '@pages/LoginPage';
+import { MyAccountPage } from '@pages/MyAccountPage';
+import { MyAddressesPage } from '@pages/MyAddressesPage'
+import { MyPersonalInformationPage } from '@pages/MyPersonalInformationPage';
 
 const test = baseTest.extend<{
     loginPage: LoginPage;

@@ -176,6 +176,11 @@ npm run allureReport
 npx playwright show-trace trace.zip
 ```
 19. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
+20. In `tsconfig.json` file in `paths` section we can re-assign the long path imports like '../../' to a variable which starts with '@' and then we can use it to shorten our import statements in respective file.
+In the below example wherever '../../pageFactory/pageRepository/' import statement is used we can replace it with '@pages'
+```JS
+"@pages/*":["pageFactory/pageRepository/*"]
+```
 
 ## Reports
 

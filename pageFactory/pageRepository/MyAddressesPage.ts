@@ -1,5 +1,5 @@
-import { MyAddressesPageObjects } from "../objectRepository/MyAddressesPageObjects";
-import { WebActions } from "../../lib/WebActions";
+import { MyAddressesPageObjects } from "@objects/MyAddressesPageObjects";
+import { WebActions } from "@lib/WebActions";
 import type { Page } from 'playwright';
 
 let webActions: WebActions;

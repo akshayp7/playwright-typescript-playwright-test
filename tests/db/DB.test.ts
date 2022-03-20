@@ -1,5 +1,5 @@
 import { testConfig } from '../../testConfig';
-import { DBActions } from '../../lib/DBActions';
+import { DBActions } from '@lib/DBActions';
 import { test } from '@playwright/test'
 
 test('Connect to Postgres DB', async () => {
