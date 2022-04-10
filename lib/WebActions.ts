@@ -1,7 +1,7 @@
 import fs from 'fs';
 import * as CryptoJS from 'crypto-js';
 import type { Page } from 'playwright';
-import { expect } from '@playwright/test';
+import { BrowserContext, expect } from '@playwright/test';
 import { Workbook } from 'exceljs';
 import { testConfig } from '../testConfig';
 import path from 'path';
@@ -124,6 +124,17 @@ export class WebActions {
         await this.waitForElementAttached(locator);
         const textValue = await this.page.textContent(locator);
         expect(textValue.trim()).toBe(text);
+    }
+
+
+    async verifyNewWindowUrl(context: BrowserContext, locator: string, urlText: string): Promise<void> {
+        const [newWindow] = await Promise.all([
+            context.waitForEvent("page"),
+            await this.page.click(locator)
+        ])
+        await newWindow.waitForLoadState("load");
+        expect(newWindow.url()).toContain(urlText);
+        await newWindow.close();
     }
 
     async verifyElementContainsText(locator: string, text: string): Promise<void> {
