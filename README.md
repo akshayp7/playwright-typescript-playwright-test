@@ -20,6 +20,7 @@
             <li><a href="#usage">Usage</a></li>
             <li><a href="#reports">Reports</a></li>
             <li><a href="#sonarqube">SonarQube</a></li>
+            <li><a href="#docker">Docker</a></li>
           </ol>
         </h5>    
     </details>
@@ -79,7 +80,7 @@ The following software are required:
 - Install Java 11 instead of Java 8 if you intend to use Sonar Qube.
 - allure commandline : Install allure command line for generating Allure Reports using
   ```sh
-  npm install -g allure-commandline
+  npm ci -g allure-commandline
   ```
 - If you wish to include SonarQube follow the below steps:
   - Install Java 11 and add java path to "PATH" environment variable.
@@ -103,7 +104,7 @@ https://github.com/akshayp7/playwright-typescipt-playwright-test.git
 2. Navigate to folder and install npm packages using:
 
 ```sh
-npm install
+npm ci
 ```
 
 <!-- USAGE EXAMPLES-->
@@ -219,6 +220,22 @@ sonar.password=password
 - Now navigate to `http://localhost:9000/` and click on your project key displayed and go to Issues section, you can find all the suggestions and issues here. You can fix the issues ans rerun `sonar-scanner` command once again.
 - <b>SonarQube Report</b>
   ![SonarQube Report Screenshot][sonar-report-screenshot]
+
+  ## Docker
+  For running the tests on Docker container we have to first build a image from Dockerfile and then run the image to spawn container on which the test scripts will run.
+- For building image from Docker run below command, where path to Dockerfile must be provided after -f tag and name of the image must be provided after -t tag.
+```JS
+docker build . -f Dockerfile -t playtest
+```
+- Once the image is generated we can run the image to spawn container and run scrips using below command. In Below Command "playContainer" is name of the container created using "playtest" image.
+```JS
+docker run --name playContainer playtest
+```
+- If you want to run a different test or provide custom command, Go to Dockerfile and edit the last line which is CMD section. The below sample runs test cases serially on QA environment.
+Once you have edited the CMD section we have to follow Step 1 to build a new image and ten run the Container from that image.
+```JS
+CMD ["npx","cross-env","ENV=qa","npm","run","test:serial"]
+```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
