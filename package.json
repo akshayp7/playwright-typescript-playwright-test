@@ -13,7 +13,8 @@
     "test:record": "npx playwright codegen",
     "test:visual": "npx playwright test visualComparision.test.ts --project=Chrome",
     "test:device": "npx playwright test Emulation.test.ts --project=Device",
-    "allureReport": "allure serve"
+    "allureReport": "allure serve",
+    "lighthouse": "node Lighthouse.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "eslint-plugin-import": "^2.26.0",
     "exceljs": "^4.3.0",
     "experimental-allure-playwright": "0.0.3",
+    "lighthouse": "^9.5.0",
     "pg": "^8.7.3",
     "playwright": "^1.21.0",
     "typescript": "^4.6.3"

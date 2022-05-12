@@ -21,6 +21,7 @@
             <li><a href="#reports">Reports</a></li>
             <li><a href="#sonarqube">SonarQube</a></li>
             <li><a href="#docker">Docker</a></li>
+            <li><a href="#lighthouse">Lighthouse</a></li>
           </ol>
         </h5>    
     </details>
@@ -65,6 +66,7 @@ Bonus:
 - [adm-zip](https://www.npmjs.com/package/adm-zip)
 - [ESLint](https://eslint.org/)
 - [SonarQube](https://www.sonarqube.org/)
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 ## Getting Started
 
@@ -235,6 +237,16 @@ docker run --name playContainer playtest
 Once you have edited the CMD section we have to follow Step 1 to build a new image and ten run the Container from that image.
 ```JS
 CMD ["npx","cross-env","ENV=qa","npm","run","test:serial"]
+```
+
+## Lighthouse
+Lighthouse is an open-source, automated tool for improving the quality of web pages. You can run it against any web page, public or requiring authentication. It has audits for performance, accessibility, progressive web apps, SEO and more.
+I have configure Lighthouse for Performance in my Project.
+- To configure Lighthouse navigate to "Lighthouse.js" and replace "https://www.google.com" with desired URL to test.
+- To run test on Mobile devices, comment out desktop mode config line and uncomment the config line written for mobile devices, Default Device is Moto G4
+- To run Lighhouse test use below command, reports will be generated in htnl format in root directory with name "LighthouseReport.html" 
+```JS
+npm run lighthouse
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
