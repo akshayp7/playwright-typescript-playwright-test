@@ -106,7 +106,7 @@ https://github.com/akshayp7/playwright-typescipt-playwright-test.git
 2. Navigate to folder and install npm packages using:
 
 ```sh
-npm ci
+npm install
 ```
 
 <!-- USAGE EXAMPLES-->
