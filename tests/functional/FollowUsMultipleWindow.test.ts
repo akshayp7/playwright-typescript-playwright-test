@@ -4,5 +4,5 @@ test(`@Smoke Verify Follow Us Facebook new window.`, async ({ context, loginPage
     await loginPage.navigateToURL();
     await loginPage.loginToApplication();
     await myAccountPage.verifyMyAccountHeader();
-    await myAccountPage.verifyFollowUsFBWindow(context, "facebook");
+    await myAccountPage.verifyFollowUsFBWindowAndClickMembers(context, "facebook");
 });

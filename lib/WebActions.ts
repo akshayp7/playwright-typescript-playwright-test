@@ -127,14 +127,15 @@ export class WebActions {
     }
 
 
-    async verifyNewWindowUrl(context: BrowserContext, locator: string, urlText: string): Promise<void> {
-        const [newWindow] = await Promise.all([
-            context.waitForEvent("page"),
-            await this.page.click(locator)
+    async verifyNewWindowUrlAndClick(context: BrowserContext, newWindowLocator: string, urlText: string,clickOnNewWindowLocator:string): Promise<void> {
+        const [newPage] = await Promise.all([
+            context.waitForEvent('page'),
+            this.page.click(newWindowLocator)
         ])
-        await newWindow.waitForLoadState("load");
-        expect(newWindow.url()).toContain(urlText);
-        await newWindow.close();
+        await newPage.waitForLoadState();
+        expect(newPage.url()).toContain(urlText);
+        await newPage.click(clickOnNewWindowLocator);
+        await newPage.close();
     }
 
     async verifyElementContainsText(locator: string, text: string): Promise<void> {

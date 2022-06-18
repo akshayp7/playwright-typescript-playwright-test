@@ -22,9 +22,8 @@ export class MyAccountPage {
         await webActions.clickElement(this.myAccountPageObjects.MY_ACCOUNT_LINKS_XPATH.replace(`linkName`, linkName));
     }
 
-    async verifyFollowUsFBWindow(context: BrowserContext, urlText: string): Promise<void> {
-        await webActions.verifyNewWindowUrl(context, this.myAccountPageObjects.MY_ACCOUNT_FOLLOW_FB_LINK_XPATH, urlText);
-
+    async verifyFollowUsFBWindowAndClickMembers(context: BrowserContext, urlText: string): Promise<void> {
+        await webActions.verifyNewWindowUrlAndClick(context, this.myAccountPageObjects.MY_ACCOUNT_FOLLOW_FB_LINK_XPATH, urlText,this.myAccountPageObjects.MY_ACCOUNT_FB_MEMBERS_LINK_XPATH);
     }
 
 }
