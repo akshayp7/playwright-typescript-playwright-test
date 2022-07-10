@@ -1,6 +1,6 @@
 import { MyAccountPageObjects } from "@objects/MyAccountPageObjects";
 import { WebActions } from "@lib/WebActions";
-import type { BrowserContext, Page } from 'playwright';
+import type { BrowserContext, Page } from '@playwright/test';
 
 let webActions: WebActions;
 

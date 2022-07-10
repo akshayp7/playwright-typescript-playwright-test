@@ -184,6 +184,22 @@ In the below example wherever '../../pageFactory/pageRepository/' import stateme
 ```JS
 "@pages/*":["pageFactory/pageRepository/*"]
 ```
+21. Network Replay : 
+For using this featre in Playwright we use HAR file. 
+HAR (HTTP Archive) is a file format used by several HTTP session tools to export the captured data. This can be highly useful in troubleshooting complex issues by obtaining additional information about the network requests that are generated in the browser while an issue occurs.
+
+To generate HAR file navigate to `HAR.test.ts` inside functional folder, in that use the below line
+```JS
+await page.routeFromHAR('har/personalInfo.har',{update:true});
+```
+ where `update:true` means to record a new har file and store it in the location provided by first parameter `har/personalInfo.har`, this generates and links all the required subfiles for `personalInfor.har` and stores it in `har` directory
+
+Once HAR file is recorded comment the line `await page.routeFromHAR('har/personalInfo.har',{update:true});` and uncomment below line
+```JS
+await page.routeFromHAR('har/personalInfo.har',{update:false});
+```
+where `update:false` means to use the existing HAR from from the path given in first paraeter `har/personalInfo.har`, to see this in action you can turn off your internet and run the script, complete webpage is mocked up along with assertions on the browser of your choice this is done using the Network Replay feature and by using our recorded HAR file.
+We can use this feature when webpage is down for some reason and we want to test some scenarios. 
 
 ## Reports
 

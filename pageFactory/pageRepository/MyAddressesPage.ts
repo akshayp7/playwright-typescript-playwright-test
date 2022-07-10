@@ -1,6 +1,6 @@
 import { MyAddressesPageObjects } from "@objects/MyAddressesPageObjects";
 import { WebActions } from "@lib/WebActions";
-import type { Page } from 'playwright';
+import type { Page } from '@playwright/test';
 
 let webActions: WebActions;
 
