@@ -5,15 +5,14 @@ import {testConfig} from '../../testConfig';
 
 let webActions: WebActions;
 
-export class LoginPage {
+export class LoginPage extends LoginPageObjects{
     readonly page: Page;
 
     constructor(page: Page) {
+        super();
         this.page = page;
         webActions = new WebActions(this.page);
     }
-
-    loginPageObjects = new LoginPageObjects();
 
     async navigateToURL(): Promise<void> {
         await webActions.navigateToURL(`/index.php?controller=authentication&back=my-account`);
@@ -21,8 +20,8 @@ export class LoginPage {
 
     async loginToApplication(): Promise<void> {
         const decipherPassword = await webActions.decipherPassword();
-        await webActions.enterElementText(this.loginPageObjects.EMAIL_EDITBOX_ID, testConfig.username);
-        await webActions.enterElementText(this.loginPageObjects.PASSWORD_EDITBOX_ID, decipherPassword);
-        await webActions.clickElement(this.loginPageObjects.SIGN_IN_BUTTON_ID);
+        await webActions.enterElementText(LoginPageObjects.EMAIL_EDITBOX_ID, testConfig.username);
+        await webActions.enterElementText(LoginPageObjects.PASSWORD_EDITBOX_ID, decipherPassword);
+        await webActions.clickElement(LoginPageObjects.SIGN_IN_BUTTON_ID);
     }
 }
