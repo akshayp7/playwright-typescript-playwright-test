@@ -26,10 +26,6 @@ export class WebActions {
         return CryptoJS.AES.decrypt(testConfig.password, key).toString(CryptoJS.enc.Utf8);
     }
 
-    async waitForElementAttached(locator: string): Promise<void> {
-        await this.page.waitForSelector(locator);
-    }
-
     async waitForPageNavigation(event: string): Promise<void> {
         switch (event.toLowerCase()) {
             case `networkidle`:
@@ -50,12 +46,10 @@ export class WebActions {
     }
 
     async clickElement(locator: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         await this.page.click(locator);
     }
 
     async clickElementJS(locator: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         await this.page.$eval(locator, (element: HTMLElement) => element.click());
     }
 
@@ -67,24 +61,19 @@ export class WebActions {
     }
 
     async enterElementText(locator: string, text: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         await this.page.fill(locator, text);
     }
 
     async dragAndDrop(dragElementLocator: string, dropElementLocator: string): Promise<void> {
-        await this.waitForElementAttached(dragElementLocator);
-        await this.waitForElementAttached(dropElementLocator);
         await this.page.dragAndDrop(dragElementLocator, dropElementLocator);
     }
 
     async selectOptionFromDropdown(locator: string, option: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         const selectDropDownLocator = await this.page.$(locator);
         selectDropDownLocator.type(option);
     }
 
     async getTextFromWebElements(locator: string): Promise<string[]> {
-        await this.waitForElementAttached(locator);
         return this.page.$$eval(locator, elements => elements.map(item => item.textContent.trim()));
     }
 
@@ -121,7 +110,6 @@ export class WebActions {
     }
 
     async verifyElementText(locator: string, text: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         const textValue = await this.page.textContent(locator);
         expect(textValue.trim()).toBe(text);
     }
@@ -139,18 +127,15 @@ export class WebActions {
     }
 
     async verifyElementContainsText(locator: string, text: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         await expect(this.page.locator(locator)).toContainText(text);
     }
 
     async verifyJSElementValue(locator: string, text: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         const textValue = await this.page.$eval(locator, (element: HTMLInputElement) => element.value);
         expect(textValue.trim()).toBe(text);
     }
 
     async verifyElementAttribute(locator: string, attribute: string, value: string): Promise<void> {
-        await this.waitForElementAttached(locator);
         const textValue = await this.page.getAttribute(locator, attribute);
         expect(textValue.trim()).toBe(value);
     }
