@@ -201,8 +201,7 @@ await page.routeFromHAR('har/personalInfo.har',{update:false});
 where `update:false` means to use the existing HAR from from the path given in first paraeter `har/personalInfo.har`, to see this in action you can turn off your internet and run the script, complete webpage is mocked up along with assertions on the browser of your choice this is done using the Network Replay feature and by using our recorded HAR file.
 We can use this feature when webpage is down for some reason and we want to test some scenarios. 
 
-
-22. Logging is implemented in `CustomReporterConfig.ts` using winston logger.
+22. Logging is implemented in `CustomReporterConfig.ts` using winston logger. 
 
 First we have to create a logger object using winston.createLogger and then provid the configuration you need.
 First argument is "level" for which i have provided value as "info", in winston logger every logging level is provided with a numeric value, for info the numeric value is 2, so if we provide level as info then all the logs which are equal to or less than info level will be displayed. In our case logs with error(0) and warn(1) wil also be logged. For more info on logging refer below link
