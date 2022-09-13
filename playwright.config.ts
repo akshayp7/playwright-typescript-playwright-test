@@ -1,5 +1,4 @@
-import { devices } from '@playwright/test';
-import { PlaywrightTestConfig } from '@playwright/test';
+import { PlaywrightTestConfig, devices } from '@playwright/test';
 import { testConfig } from './testConfig';
 const ENV = process.env.ENV;
 
@@ -135,6 +134,7 @@ const config: PlaywrightTestConfig = {
       use: {
         ...devices[`Pixel 4a (5G)`],
         browserName: `chromium`,
+        channel: `chrome`,
         baseURL: testConfig[process.env.ENV],
         headless: true,
         ignoreHTTPSErrors: true,
