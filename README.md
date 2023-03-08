@@ -55,7 +55,7 @@ Bonus:
 
 - Supports PostgresSQL using 'pg' module.
 - Supports Excel File Read/Write using 'excel-js' module.
-- Converts HTL Reports to Zip format which can shared across.
+- Converts HTML Reports to Zip format which can shared across.
 
 ### Built With
 
@@ -107,6 +107,11 @@ https://github.com/akshayp7/playwright-typescipt-playwright-test.git
 
 ```sh
 npm install
+```
+3. For first time installation run below command to download required browsers
+
+```sh
+npx playwright install
 ```
 
 <!-- USAGE EXAMPLES-->
@@ -267,13 +272,13 @@ docker run --name playContainer playtest
 - If you want to run a different test or provide custom command, Go to Dockerfile and edit the last line which is CMD section. The below sample runs test cases serially on QA environment.
 Once you have edited the CMD section we have to follow Step 1 to build a new image and ten run the Container from that image.
 ```JS
-CMD ["npx","cross-env","ENV=qa","npm","run","test:serial"]
+CMD npx cross-env ENV=qa npm run test:serial
 ```
 
 ## Lighthouse
 Lighthouse is an open-source, automated tool for improving the quality of web pages. You can run it against any web page, public or requiring authentication. It has audits for performance, accessibility, progressive web apps, SEO and more.
-I have configure Lighthouse for Performance in my Project.
-- To configure Lighthouse navigate to "Lighthouse.js" and replace "https://www.google.com" with desired URL to test.
+I have configure Lighthouse for Performance in my Project. Please use version 9.6.8 as later versions are not compatible.
+- To configure Lighthouse navigate to "tests/lighthouse/Lighthouse.js" and replace "https://www.google.com" with desired URL to test.
 - To run test on Mobile devices, comment out desktop mode config line and uncomment the config line written for mobile devices, Default Device is Moto G4
 - To run Lighhouse test use below command, reports will be generated in htnl format in root directory with name "LighthouseReport.html" 
 ```JS

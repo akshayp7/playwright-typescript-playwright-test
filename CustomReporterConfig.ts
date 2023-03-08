@@ -6,13 +6,13 @@ const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),
     transports: [
-      // - Write all logs with importance level of `info` or less than it
-      new winston.transports.File({ filename: 'logs/info.log', level: 'info' }),
+        // - Write all logs with importance level of `info` or less than it
+        new winston.transports.File({ filename: 'logs/info.log', level: 'info' }),
     ],
-  });
+});
 
-  // Writes logs to console
-  logger.add(console);
+// Writes logs to console
+logger.add(console);
 
 export default class CustomReporterConfig implements Reporter {
 

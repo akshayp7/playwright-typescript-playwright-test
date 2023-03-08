@@ -1,12 +1,8 @@
-import { LoginPage } from "@pages/LoginPage";
-import { MyAccountPage } from "@pages/MyAccountPage";
-import { test } from '@playwright/test';
+import test from '@lib/BaseTest';
 
-test(`Verify My Personal Information.`, async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const myAccountPage = new MyAccountPage(page);
-
+test(`Verify Elements Page.`, async ({ loginPage, elementsPage, webActions }) => {
     await loginPage.navigateToURL();
-    await loginPage.loginToApplication();
-    await myAccountPage.verifyMyAccountHeader();
+    await webActions.clickByText('Elements'); // Click on Elements Icon identified via text selector
+    await webActions.clickByText('Text Box'); //Click on TextBox Navigation Sidebar identified via text selector
+    await elementsPage.enterFullName(`AutoTest`);
 });

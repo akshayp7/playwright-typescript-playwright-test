@@ -1,28 +1,37 @@
 import { test as baseTest } from '@playwright/test';
 import { LoginPage } from '@pages/LoginPage';
-import { MyAccountPage } from '@pages/MyAccountPage';
-import { MyAddressesPage } from '@pages/MyAddressesPage'
-import { MyPersonalInformationPage } from '@pages/MyPersonalInformationPage';
+import { ElementsPage } from '@pages/ElementsPage';
+import { AlertsFrameWindowsPage } from '@pages/AlertsFrameWindowsPage';
+import { WidgetsPage } from '@pages/WidgetsPage';
+import { InteractionsPage } from '@pages/InteractionsPage';
+import { WebActions } from '@lib/WebActions';
 
 const test = baseTest.extend<{
+    webActions: WebActions;
     loginPage: LoginPage;
-    myAccountPage: MyAccountPage;
-    myAddressesPage: MyAddressesPage;
-    myPersonalInformationPage: MyPersonalInformationPage;
-
+    elementsPage: ElementsPage;
+    alertsFrameWindowsPage: AlertsFrameWindowsPage;
+    widgetsPage: WidgetsPage;
+    interactionsPage: InteractionsPage;
 }>({
-    loginPage: async ({ page }, use) => {
-        await use(new LoginPage(page));
+    webActions: async ({ page, context }, use) => {
+        await use(new WebActions(page, context));
     },
-    myAccountPage: async ({ page }, use) => {
-        await use(new MyAccountPage(page));
+    loginPage: async ({ page, context }, use) => {
+        await use(new LoginPage(page, context));
     },
-    myAddressesPage: async ({ page }, use) => {
-        await use(new MyAddressesPage(page));
+    elementsPage: async ({ page, context }, use) => {
+        await use(new ElementsPage(page, context));
     },
-    myPersonalInformationPage: async ({ page }, use) => {
-        await use(new MyPersonalInformationPage(page));
+    alertsFrameWindowsPage: async ({ page, context }, use) => {
+        await use(new AlertsFrameWindowsPage(page, context));
+    },
+    widgetsPage: async ({ page, context }, use) => {
+        await use(new WidgetsPage(page, context));
+    },
+    interactionsPage: async ({ page, context }, use) => {
+        await use(new InteractionsPage(page, context));
     }
-});
+})
 
 export default test;
