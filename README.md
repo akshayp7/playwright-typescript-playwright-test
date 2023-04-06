@@ -221,6 +221,11 @@ Once logger object is created I have provided `logger.add(console);` which instr
 
 Once logger object is created you can use this instead of console.log in your framework and these logs will be written both in your console and log file.
 
+23. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
+```JS
+npx cross-env ENV=qa npm run test:ui
+```
+
 ## Reports
 
 - <b>Overall Report</b>
