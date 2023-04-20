@@ -56,6 +56,8 @@ Bonus:
 - Supports PostgresSQL using 'pg' module.
 - Supports Excel File Read/Write using 'excel-js' module.
 - Converts HTML Reports to Zip format which can shared across.
+- Extracts Text from PDF files.
+- Shows Page performance using Lighthouse Library.
 
 ### Built With
 
@@ -67,6 +69,7 @@ Bonus:
 - [ESLint](https://eslint.org/)
 - [SonarQube](https://www.sonarqube.org/)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- [pdfjs-dist-es5](https://www.npmjs.com/package/pdfjs-dist-es5)
 
 ## Getting Started
 
@@ -225,6 +228,7 @@ Once logger object is created you can use this instead of console.log in your fr
 ```JS
 npx cross-env ENV=qa npm run test:ui
 ```
+24. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
 
 ## Reports
 
