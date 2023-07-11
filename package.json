@@ -24,24 +24,22 @@
   "author": "Akshay Pai",
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.32.3",
+    "@playwright/test": "^1.35.1",
     "@types/adm-zip": "^0.5.0",
     "@types/crypto-js": "^4.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
     "adm-zip": "^0.5.10",
-    "allure-playwright": "^2.1.0",
-    "cross-env": "^7.0.3",
+    "allure-playwright": "^2.4.0",
     "crypto-js": "^4.1.1",
-    "eslint": "^8.38.0",
+    "eslint": "^8.44.0",
     "eslint-plugin-import": "^2.27.5",
     "exceljs": "^4.3.0",
-    "i": "^0.3.7",
     "lighthouse": "^9.6.8",
     "npm": "^9.6.4",
     "pdfjs-dist-es5": "^2.13.216",
-    "pg": "^8.10.0",
-    "typescript": "^5.0.4",
-    "winston": "^3.8.2"
+    "pg": "^8.11.1",
+    "typescript": "^5.1.6",
+    "winston": "^3.9.0"
   }
 }

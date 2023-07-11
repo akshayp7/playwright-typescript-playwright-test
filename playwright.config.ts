@@ -1,6 +1,6 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test';
 import { testConfig } from './testConfig';
-const ENV = process.env.ENV;
+const ENV = process.env.npm_config_ENV;
 
 if (!ENV || ![`qa`, `dev`, `qaApi`, `devApi`].includes(ENV)) {
   console.log(`Please provide a correct environment value like "npx cross-env ENV=qa|dev|qaApi|devApi"`);
@@ -35,10 +35,10 @@ const config: PlaywrightTestConfig = {
         channel: `chrome`,
 
         //Picks Base Url based on User input
-        baseURL: testConfig[process.env.ENV],
+        baseURL: testConfig[ENV],
 
         //Browser Mode
-        headless: true,
+        headless: false,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },
@@ -62,7 +62,7 @@ const config: PlaywrightTestConfig = {
       name: `Chromium`,
       use: {
         browserName: `chromium`,
-        baseURL: testConfig[process.env.ENV],
+        baseURL: testConfig[ENV],
         headless: true,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
@@ -80,7 +80,7 @@ const config: PlaywrightTestConfig = {
       name: `Firefox`,
       use: {
         browserName: `firefox`,
-        baseURL: testConfig[process.env.ENV],
+        baseURL: testConfig[ENV],
         headless: true,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
@@ -99,7 +99,7 @@ const config: PlaywrightTestConfig = {
       use: {
         browserName: `chromium`,
         channel: `msedge`,
-        baseURL: testConfig[process.env.ENV],
+        baseURL: testConfig[ENV],
         headless: false,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
@@ -116,7 +116,7 @@ const config: PlaywrightTestConfig = {
       name: `WebKit`,
       use: {
         browserName: `webkit`,
-        baseURL: testConfig[process.env.ENV],
+        baseURL: testConfig[ENV],
         headless: true,
         viewport: { width: 1500, height: 730 },
         ignoreHTTPSErrors: true,
@@ -135,7 +135,7 @@ const config: PlaywrightTestConfig = {
         ...devices[`Pixel 4a (5G)`],
         browserName: `chromium`,
         channel: `chrome`,
-        baseURL: testConfig[process.env.ENV],
+        baseURL: testConfig[ENV],
         headless: true,
         ignoreHTTPSErrors: true,
         acceptDownloads: true,
@@ -153,7 +153,7 @@ const config: PlaywrightTestConfig = {
     {
       name: `API`,
       use: {
-        baseURL: testConfig[process.env.ENV]
+        baseURL: testConfig[ENV]
       }
     }
   ],

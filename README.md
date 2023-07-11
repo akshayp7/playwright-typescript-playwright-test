@@ -125,31 +125,31 @@ npx playwright install
 2. For execution entire test suite on all available browsers simultaneously execute below command where "ENV" can be "qa" or "dev", `Test Cases are present in "tests" folder`:
 
 ```JS
-npx cross-env ENV=qa npm run test
+npm run test --ENV="qa"
 ```
 
 3. For executing single test case on Chrome browser execute the below command, you can change the browser for execution e.g. if you want to run test cases on Firefox, you can change `--project=Firefox` against `test:single` in `package.json`, just make sure the browser name given matches the name given in `playwright.config.ts`.
 
 ```JS
-npx cross-env ENV=qa npm run test:single
+npm run test:single --ENV="qa"
 ```
 
 4. For executing test cases in parallel, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:parallel` give the tag value and execute :
 
 ```JS
-npx cross-env ENV=qa npm run test:parallel
+npm run test:parallel --ENV="qa"
 ```
 
 5. For executing test cases in sequence, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:serial` give the tag value and execute, `workers` parameter correspond to test cases you want to execute simultaneously e.g. `--workers=3`, executes 3 test cases simultaneously :
 
 ```JS
-npx cross-env ENV=qa npm run test:serial
+npm run test:serial --ENV="qa"
 ```
 
 6. For executing API test cases, please provide "ENV" value as "qaApi" or "devApi" :
 
 ```JS
-npx cross-env ENV=qaApi npm run test:api
+npm run test:api --ENV="qaApi" 
 ```
 
 7. For recording test scripts :
@@ -161,13 +161,13 @@ npm run test:record
 8. To produce and visually compare screenshots execute below command. On first execution reference screenshot will be generated for comparision with subsequent runs.
 
 ```JS
-npx cross-env ENV=qa npm run test:visual
+npm run test:visual --ENV="qa"
 ```
 
 9. For emulating test cases on any device, in `playwright.config.ts`, under device section provide desired device name and execute :
 
 ```JS
-npx cross-env ENV=qa npm run test:device
+npm run test:device --ENV="qa"
 ```
 
 10. For Allure Report generation execute :
@@ -226,7 +226,7 @@ Once logger object is created you can use this instead of console.log in your fr
 
 23. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
 ```JS
-npx cross-env ENV=qa npm run test:ui
+npm run test:ui --ENV="qa"
 ```
 24. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
 
@@ -281,7 +281,7 @@ docker run --name playContainer playtest
 - If you want to run a different test or provide custom command, Go to Dockerfile and edit the last line which is CMD section. The below sample runs test cases serially on QA environment.
 Once you have edited the CMD section we have to follow Step 1 to build a new image and ten run the Container from that image.
 ```JS
-CMD npx cross-env ENV=qa npm run test:serial
+CMD npm run test:serial --ENV="qa"
 ```
 
 ## Lighthouse

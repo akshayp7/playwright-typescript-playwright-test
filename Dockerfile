@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.31.0-focal
+FROM mcr.microsoft.com/playwright:v1.35.0-jammy
 
 WORKDIR /app
 
@@ -20,4 +20,4 @@ RUN chown -R turing /app
 #Switching from root user to non-root user(turing)
 USER turing
 
-CMD npx cross-env ENV=qa npm run test:serial
+CMD npm run test:serial --ENV="qa"
