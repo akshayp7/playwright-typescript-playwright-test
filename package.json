@@ -24,7 +24,7 @@
   "author": "Akshay Pai",
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.35.1",
+    "@playwright/test": "^1.39.0",
     "@types/adm-zip": "^0.5.0",
     "@types/crypto-js": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
