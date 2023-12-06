@@ -1,4 +1,4 @@
 {"name": "morpheus","job": "leader"}#
 |name|job|id|createdAt#
 Date, Content-Type, Content-Length, Connection, X-Powered-By, Access-Control-Allow-Origin, Etag, Via, CF-Cache-Status, 
-Expect-CT, Report-To, NEL, Server, CF-RAY, alt-svc
+Expect-CT, Report-To, Reporting-Endpoints, Nel, Server, CF-RAY, alt-svc
