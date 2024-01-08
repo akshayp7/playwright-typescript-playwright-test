@@ -3,7 +3,7 @@ import { testConfig } from './testConfig';
 const ENV = process.env.npm_config_ENV;
 
 if (!ENV || ![`qa`, `dev`, `qaApi`, `devApi`].includes(ENV)) {
-  console.log(`Please provide a correct environment value like "npx cross-env ENV=qa|dev|qaApi|devApi"`);
+  console.log(`Please provide a correct environment value after command like "--ENV=qa|dev|qaApi|devApi"`);
   process.exit();
 }
 

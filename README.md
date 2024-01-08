@@ -230,6 +230,11 @@ npm run test:ui --ENV="qa"
 ```
 24. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
 
+25. Accessibility test case is written in `tests/accessibility/Axe.test.ts`, to run this test use the command
+```JS
+ npm run test:accessibility --ENV="qa"
+```
+
 ## Reports
 
 - <b>Overall Report</b>

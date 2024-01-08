@@ -15,7 +15,8 @@
     "test:visual": "npx playwright test visualComparision.test.ts --project=Chrome",
     "test:device": "npx playwright test Emulation.test.ts --project=Device",
     "allureReport": "allure serve",
-    "lighthouse": "node tests/lighthouse/Lighthouse.js"
+    "lighthouse": "node tests/lighthouse/Lighthouse.js",
+    "test:accessibility": "npx playwright test Axe.test.ts --project=Chrome"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "author": "Akshay Pai",
   "license": "MIT",
   "dependencies": {
+    "@axe-core/playwright": "^4.8.2",
     "@playwright/test": "^1.40.1",
     "@types/adm-zip": "^0.5.5",
     "@types/crypto-js": "^4.2.1",
