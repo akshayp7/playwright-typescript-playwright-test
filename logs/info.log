@@ -1,0 +1,32 @@
+{"level":"info","message":"Test Case Started : @Smoke Verify Book Store Login"}
+{"level":"info","message":"Executing Step : Navigate to Application"}
+{"level":"info","message":"Executing Step : Click on Book Store Application Icon"}
+{"level":"info","message":"Executing Step : Click on Login button in Main page"}
+{"level":"info","message":"Executing Step : Login to Book Store application"}
+{"level":"info","message":"Executing Step : Verify User is logged in and navigated to Profile page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Book Store Login Status : passed"}
+{"level":"error","message":"Error: File not found: C:\\playwright-typescript-playwright-test\\html-report"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Book Store Login"}
+{"level":"info","message":"Executing Step : Navigate to Application"}
+{"level":"info","message":"Executing Step : Click on Book Store Application Icon"}
+{"level":"info","message":"Executing Step : Click on Login button in Main page"}
+{"level":"info","message":"Executing Step : Login to Book Store application"}
+{"level":"info","message":"Executing Step : Verify User is logged in and navigated to Profile page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Book Store Login Status : passed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Alerts, Frame & Windows Page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Alerts, Frame & Windows Page Status : passed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Elements Page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Elements Page Status : passed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Interactions Page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Interactions Page Status : passed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Book Store Login"}
+{"level":"info","message":"Executing Step : Navigate to Application"}
+{"level":"info","message":"Executing Step : Click on Book Store Application Icon"}
+{"level":"info","message":"Executing Step : Click on Login button in Main page"}
+{"level":"info","message":"Executing Step : Login to Book Store application"}
+{"level":"info","message":"Executing Step : Verify User is logged in and navigated to Profile page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Book Store Login Status : passed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify the text contents of PDF file."}
+{"level":"info","message":"Test Case Completed : @Smoke Verify the text contents of PDF file. Status : passed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Widgets Page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Widgets Page Status : passed"}
