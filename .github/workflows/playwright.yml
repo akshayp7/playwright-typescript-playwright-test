@@ -39,4 +39,6 @@ jobs:
 
       # Step to run tests
     - name: Run tests
-      run: npm run test:serial -- --ENV='qa'
+      run: npm run test:serial
+      env:
+      ENV: qa
