@@ -32,3 +32,6 @@
 {"level":"info","message":"Test Case Completed : @Smoke Verify Widgets Page Status : passed"}
 {"level":"info","message":"Test Case Started : @Smoke Verify Alerts, Frame & Windows Page"}
 {"level":"info","message":"Test Case Completed : @Smoke Verify Alerts, Frame & Windows Page Status : interrupted"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Alerts, Frame & Windows Page"}
+{"level":"info","message":"Test Case Completed : @Smoke Verify Alerts, Frame & Windows Page Status : failed"}
+{"level":"info","message":"Test Case Started : @Smoke Verify Elements Page"}
