@@ -46,7 +46,11 @@ jobs:
       # Step to wait for the job to complete
     - name: Wait for job completion
       run: sleep 60s  # Adjust the wait time as needed
+      # This step should always run, even if previous steps fail
+      if: always()
 
       # Step to zip html-report folder
     - name: Zip HTML report
       run: zip -r html-report.zip html-report
+      # This step should always run, even if previous steps fail
+      if: always()
