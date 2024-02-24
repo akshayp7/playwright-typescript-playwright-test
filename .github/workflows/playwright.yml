@@ -46,9 +46,3 @@ jobs:
       # Step to check the existence of html-report directory
     - name: Check HTML report directory
       run: ls html-report
-
-      # Step to zip the html-report folder
-    - name: Zip HTML report
-      run: |
-        cd ..
-        zip -r html-report.zip html-report
