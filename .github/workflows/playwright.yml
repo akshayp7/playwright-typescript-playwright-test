@@ -39,8 +39,6 @@ jobs:
 
       # Step to run tests with qa as environment variable similarly we can define qa|dev|qaApi|devApi
     - name: Run tests
-      run: |
-        cd ..
-        npm run test:serial
+      run: npm run test:serial
       env:
        npm_config_ENV: "qa"
