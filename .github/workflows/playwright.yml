@@ -27,7 +27,7 @@ jobs:
     - name: Use Node.js 20.5.1-bookworm-slim
       uses: actions/setup-node@v2
       with:
-        node-version: '20.5.1-bookworm-slim'
+        node-version: '18'
 
       # Step to install Node.js dependencies
     - name: Install dependencies
