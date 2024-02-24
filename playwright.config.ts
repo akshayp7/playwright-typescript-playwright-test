@@ -12,9 +12,6 @@ const config: PlaywrightTestConfig = {
   //Global Setup to run before all tests
   globalSetup: `./global-setup`,
 
-  //Global Teardown to run after all tests
-  globalTeardown: `./global-teardown`,
-
   //sets timeout for each test case
   timeout: 120000,
 
