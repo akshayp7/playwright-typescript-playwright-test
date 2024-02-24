@@ -58,6 +58,8 @@ Bonus:
 - Converts HTML Reports to Zip format which can shared across.
 - Extracts Text from PDF files.
 - Shows Page performance using Lighthouse Library.
+- Docker Image is created with node:20.5.1-bookworm-slim
+- Configured GitHub Actions to get triggered on pull/push actions
 
 ### Built With
 
@@ -234,6 +236,8 @@ npm run test:ui --ENV="qa"
 ```JS
  npm run test:accessibility --ENV="qa"
 ```
+
+26. GitHub Actions is configured in `playwright-github-actions.yml` file and events(trigger points) are set to pus/pull actions on master branch.
 
 ## Reports
 
