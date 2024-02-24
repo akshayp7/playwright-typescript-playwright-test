@@ -42,3 +42,20 @@ jobs:
       run: npm run test:serial
       env:
        npm_config_ENV: "qa"
+
+  
+  # Define a job named 'create-report-zip'
+  create-report-zip:
+    # Specify the operating system for this job
+    runs-on: ubuntu-latest
+    
+    # Define dependencies to ensure it runs after 'build' job completes
+    needs: build
+
+    # Define the steps to execute in this job
+    steps:
+      # Step to zip the html-report folder
+    - name: Zip HTML report
+      run: |
+        cd playwright-typescript-playwright-test
+        zip -r html-report.zip html-report
