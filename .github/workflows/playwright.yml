@@ -23,15 +23,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step to install msmtp
-      - name: Install msmtp
-        run: sudo apt update && sudo apt install -y msmtp
-
       # Step to set up the Node.js version
       - name: Install node js v20
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: "20"
 
       # Step to install Node.js dependencies
       - name: Install dependencies
@@ -49,7 +45,8 @@ jobs:
 
       # Step to wait for the job to complete
       - name: Wait for job completion
-        run: sleep 30s  # Adjust the wait time as needed
+      # Adjust the wait time as needed
+        run: sleep 30s 
         # This step should always run, even if previous steps fail
         if: always()
 
@@ -58,11 +55,3 @@ jobs:
         run: zip -r html-report.zip html-report
         # This step should always run, even if previous steps fail
         if: always()
-
-      # Step to send email with the zip report using msmtp
-      - name: Send email with zip report
-        run: |
-          echo "Sending email with zip report"
-          echo -e "Subject: Playwright Test Report\n\nThis is the body of the email" | msmtp -a default codendeavor@gmail.com
-        # This step should only run if the previous steps were successful
-        if: success()
