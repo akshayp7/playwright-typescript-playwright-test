@@ -17,10 +17,6 @@ jobs:
     # Specify the operating system for this job
     runs-on: ubuntu-latest
 
-     strategy:
-      matrix:
-        env: qa
-
     # Define the steps to execute in this job
     steps:
       # Step to checkout the source code from the repository
@@ -43,4 +39,4 @@ jobs:
 
       # Step to run tests
     - name: Run tests
-      run: npm run test:serial
+      run: npm run test:serial -- --ENV=qa
