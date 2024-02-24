@@ -237,7 +237,7 @@ npm run test:ui --ENV="qa"
  npm run test:accessibility --ENV="qa"
 ```
 
-26. GitHub Actions is configured in `playwright-github-actions.yml` file and events(trigger points) are set to pus/pull actions on master branch.
+26. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch.
 
 ## Reports
 
