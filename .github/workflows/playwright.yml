@@ -40,7 +40,3 @@ jobs:
       # Step to run tests
     - name: Run tests
       run: npm run test:serial
-
-      # Step to run Docker container with specific environment variable and name
-    - name: Run Docker container
-      run: docker run -e npm_config_ENV=qa --name playContainer playtest

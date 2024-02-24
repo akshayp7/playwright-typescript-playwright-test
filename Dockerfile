@@ -16,5 +16,9 @@ COPY . .
 # Install Chrome browser for use with Playwright
 RUN npx playwright install chrome
 
+# Instead of passing --ENV="qa" in the command line (CMD parameter), 
+# we are setting the environment variable here itself
+ENV npm_config_ENV=qa
+
 # Here, we run the test script defined in package.json (npm run test:serial)
 CMD ["npm", "run", "test:serial"]
