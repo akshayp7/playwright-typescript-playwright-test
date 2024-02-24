@@ -44,9 +44,9 @@ jobs:
        npm_config_ENV: "qa"
 
       # Step to wait for the job to complete
-      - name: Wait for job completion
-        run: sleep 60s  # Adjust the wait time as needed
+    - name: Wait for job completion
+      run: sleep 60s  # Adjust the wait time as needed
 
       # Step to zip html-report folder
-      - name: Zip HTML report
-        run: zip -r html-report.zip html-report
+    - name: Zip HTML report
+      run: zip -r html-report.zip html-report
