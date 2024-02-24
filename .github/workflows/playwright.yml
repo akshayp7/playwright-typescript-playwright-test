@@ -38,7 +38,7 @@ jobs:
       run: npx playwright install chrome
 
     - name: Set environment variables
-      run: echo "ENV=qa" >> $GITHUB_ENV
+      run: echo "export ENV=qa" >> $GITHUB_ENV
 
       # Step to run tests
     - name: Run tests
