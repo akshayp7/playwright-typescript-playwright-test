@@ -41,4 +41,4 @@ jobs:
     - name: Run tests
       run: npm run test:serial
       env:
-       ENV: qa
+       npm_config_ENV: "qa"
