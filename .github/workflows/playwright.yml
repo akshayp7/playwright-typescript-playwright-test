@@ -37,6 +37,9 @@ jobs:
     - name: Install Chrome browser for Playwright
       run: npx playwright install chrome
 
+    - name: Set environment variables
+      run: echo "ENV=qa" >> $GITHUB_ENV
+
       # Step to run tests
     - name: Run tests
       run: npm run test:serial -- --ENV=qa
