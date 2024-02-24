@@ -55,10 +55,40 @@ jobs:
       # This step should always run, even if previous steps fail
       if: always()
 
-      # Step to send email with the zip report
+      # Step to send email with the zip report using SendGrid API
     - name: Send email with zip report
       run: |
-        echo "Sending email with zip report"
-        echo "This is the body of the email" | mutt -s "Subject: Playwright Test Report" -a html-report.zip codendeavor@gmail.com
+          curl -X "POST" "https://api.sendgrid.com/v3/mail/send" \
+          -H 'Authorization: Bearer YOUR_SENDGRID_API_KEY' \
+          -H 'Content-Type: application/json' \
+          -d $'{
+            "personalizations": [
+              {
+                "to": [
+                  {
+                    "email": "recipient@example.com"
+                  }
+                ],
+                "subject": "Playwright Test Report"
+              }
+            ],
+            "from": {
+              "email": "sender@example.com"
+            },
+            "content": [
+              {
+                "type": "text/plain",
+                "value": "This is the body of the email."
+              }
+            ],
+            "attachments": [
+              {
+                "content": "'"$(base64 html-report.zip)"'",
+                "filename": "html-report.zip",
+                "type": "application/zip",
+                "disposition": "attachment"
+              }
+            ]
+          }'
       # This step should only run if the previous steps were successful
       if: success()
