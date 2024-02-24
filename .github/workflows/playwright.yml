@@ -55,9 +55,10 @@ jobs:
       # This step should always run, even if previous steps fail
       if: always()
 
+      # Step to send email with the zip report
     - name: Send email with zip report
       run: |
-        echo "Sending email with Playwright html zip report"
-        echo "Playwright Test Case Report" | mail -s "Subject: Playwright Test Report" -A html-report.zip codendeavor@gmail.com
+        echo "Sending email with zip report"
+        echo "This is the body of the email" | mutt -s "Subject: Playwright Test Report" -a html-report.zip codendeavor@gmail.com
       # This step should only run if the previous steps were successful
-      if: always()
+      if: success()
