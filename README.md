@@ -279,9 +279,9 @@ sonar.password=password
 ```JS
 docker build . -f Dockerfile -t playtest
 ```
-- Once the image is generated we can run the image to spawn container and run scrips using below command. In Below Command "playContainer" is name of the container created using "playtest" image.
+- Once the image is generated we can run the image to spawn container and run scrips using below command. In Below Command "playContainer" is name of the container created using "playtest" image and "-e npm_config_ENV" corresponds to the environment you are providing e.g. dev/qa etc.
 ```JS
-docker run --name playContainer playtest
+docker run -e npm_config_ENV=qa --name playContainer playtest
 ```
 - If you want to run a different test or provide custom command, Go to Dockerfile and edit the last line which is CMD section. The below sample runs test cases serially on QA environment.
 Once you have edited the CMD section we have to follow Step 1 to build a new image and ten run the Container from that image.

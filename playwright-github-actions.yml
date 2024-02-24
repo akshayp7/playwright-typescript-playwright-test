@@ -1,0 +1,46 @@
+# Name of the GitHub Actions workflow
+name: Playwright Github Actions
+
+# Define when to trigger this workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Define the jobs to run in this workflow
+jobs:
+  # Define a job named 'build'
+  build:
+    # Specify the operating system for this job
+    runs-on: ubuntu-latest
+
+    # Define the steps to execute in this job
+    steps:
+      # Step to checkout the source code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+      # Step to set up the Node.js version
+    - name: Use Node.js 20.5.1-bookworm-slim
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20.5.1-bookworm-slim'
+
+      # Step to install Node.js dependencies
+    - name: Install dependencies
+      run: npm ci
+
+      # Step to install Chrome browser for Playwright
+    - name: Install Chrome browser for Playwright
+      run: npx playwright install chrome
+
+      # Step to run tests
+    - name: Run tests
+      run: npm run test:serial
+
+      # Step to run Docker container with specific environment variable and name
+    - name: Run Docker container
+      run: docker run -e npm_config_ENV=qa --name playContainer playtest
