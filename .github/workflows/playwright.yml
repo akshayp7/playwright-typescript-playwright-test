@@ -52,6 +52,15 @@ jobs:
         # This step should always run, even if previous steps fail
         if: always()
 
+      - name: Check if HTML report exists
+        run: |
+          if [ -d "html-report" ]; then
+            echo "HTML report exists."
+          else
+            echo "HTML report does not exist. Exiting..."
+            exit 1
+          fi
+
       # Step to zip html-report folder
       - name: Zip HTML report
         run: zip -r html-report.zip html-report
@@ -66,6 +75,7 @@ jobs:
 
       - name: Generate artifact link
         id: artifact_link
+        # Adjust the wait time as needed
         run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
 
       # Send Slack notification once the tests are completed
