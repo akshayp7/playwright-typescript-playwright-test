@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: html-report
-          path: html-report.zip
+          path: artifacts/html-report.zip
           # Specify the directory structure for the artifact
           if-no-files-found: error
         if: always()
