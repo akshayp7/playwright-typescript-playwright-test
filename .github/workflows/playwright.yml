@@ -68,4 +68,4 @@ jobs:
           SLACK_TEXT: "Playwright tests have completed. Here is the HTML report."
           SLACK_FILE: ./html-report.zip
           # This step should always run, even if previous steps fail
-          if: always()
+        if: always()
