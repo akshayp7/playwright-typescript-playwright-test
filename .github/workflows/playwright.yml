@@ -52,6 +52,7 @@ jobs:
         # This step should always run, even if previous steps fail
         if: always()
 
+      # Check if HTML report exists
       - name: Check if HTML report exists
         run: |
           if [ -d "html-report" ]; then
@@ -68,27 +69,27 @@ jobs:
         # This step should always run, even if previous steps fail
         if: always()
 
+      # Step to upload artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: html-report
           path: html-report.zip
-          # Specify the directory structure for the artifact
           if-no-files-found: error
         if: always()
 
+      # Step to generate artifact link
       - name: Generate artifact link
         id: artifact_link
-        run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/"
+        run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         if: always()
 
-      # Send Slack notification once the tests are completed
+      # Send Slack notification with html-reprt url once the tests are completed
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_CHANNEL: "#playwright-test-reports"
           SLACK_USERNAME: Playwright GitHub Actions
-          SLACK_TITLE: Test results are available in Artifacts section of below link as html-report. ${{ steps.artifact_link.outputs.artifact_url }}.
-          # This step should always run, even if previous steps fail
+          SLACK_TITLE: "Test results are available in [Artifacts section](${{ steps.artifact_link.outputs.artifact_url }}) as html-report."
         if: always()
