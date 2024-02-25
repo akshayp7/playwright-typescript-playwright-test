@@ -77,12 +77,6 @@ jobs:
           if-no-files-found: error
         if: always()
 
-      - name: Generate artifact link
-        id: artifact_link
-        # Adjust the wait time as needed
-        run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/"
-        if: always()
-
       # Send Slack notification once the tests are completed
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
@@ -90,6 +84,6 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_CHANNEL: "#playwright-test-reports"
           SLACK_USERNAME: Playwright GitHub Actions
-          SLACK_TITLE: Test results are available [here](${{ steps.artifact_link.outputs.artifact_url }}).
+          SLACK_TITLE: Test results are available in Artifacts section of below link as html-report ${{ steps.artifact_link.outputs.artifact_url }}.
           # This step should always run, even if previous steps fail
         if: always()
