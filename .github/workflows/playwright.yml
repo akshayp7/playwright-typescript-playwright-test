@@ -49,10 +49,9 @@ jobs:
           path: html-report.zip
 
       - name: Send Slack notification with artifact link
-        uses: peaceiris/actions-slack@v3
+        uses: "https://github.com/marketplace/actions/slack-action"
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
-          text: "Playwright tests have completed successfully. HTML report is attached as an artifact. You can download it [here](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/html-report)"
-          channel: "#playwright-test-reports"
-          author_name: GitHub Actions
-          color: good
-          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          args: |
+            {"text": "Playwright tests have completed successfully. HTML report is attached as an artifact. You can download it [here](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/html-report)"}
