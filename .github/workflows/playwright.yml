@@ -84,6 +84,6 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_CHANNEL: "#playwright-test-reports"
           SLACK_USERNAME: Playwright GitHub Actions
-          SLACK_TITLE: Test results are available in Artifacts section of below link as html-report ${{ steps.artifact_link.outputs.artifact_url }}.
+          SLACK_TITLE: Test results are available in Artifacts section of below link as html-report [Report Link](${{ steps.artifact_link.outputs.artifact_url }}).
           # This step should always run, even if previous steps fail
         if: always()
