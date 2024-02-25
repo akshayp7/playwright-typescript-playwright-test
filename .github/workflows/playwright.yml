@@ -71,8 +71,6 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_CHANNEL: "#playwright-test-reports"
           SLACK_USERNAME: GitHub Actions
-          SLACK_TITLE: Playwright Tests Completed
-          SLACK_TEXT: "Playwright tests have completed successfully. HTML report is attached as an artifact. You can download it [here](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/html-report)"
-          SLACK_FILE: ./html-report.zip
-          # This step should always run, even if previous steps fail
+          SLACK_TITLE: "Playwright tests have completed successfully. HTML report is attached as an artifact. You can download it [here](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/html-report)"
+        # This step should always run, even if previous steps fail
         if: always()
