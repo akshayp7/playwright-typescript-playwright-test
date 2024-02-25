@@ -65,7 +65,7 @@ jobs:
           SLACK_CHANNEL: '#playwright-test-reports'
           SLACK_USERNAME: GitHub Actions
           SLACK_TITLE: Playwright Tests Completed
-          SLACK_TEXT: "Playwright tests have completed. Here is the HTML report."
-          SLACK_FILE: ./html-report.zip
+          SLACK_TEXT: "Playwright tests have completed. Here is the HTML zip report."
+          SLACK_FILE: ./html-report
           # This step should always run, even if previous steps fail
         if: always()
