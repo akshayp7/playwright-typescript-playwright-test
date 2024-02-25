@@ -16,6 +16,8 @@ jobs:
   build:
     # Specify the operating system for this job
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
 
     # Define the steps to execute in this job
     steps:
@@ -45,8 +47,8 @@ jobs:
 
       # Step to wait for the job to complete
       - name: Wait for job completion
-      # Adjust the wait time as needed
-        run: sleep 30s 
+        # Adjust the wait time as needed
+        run: sleep 30s
         # This step should always run, even if previous steps fail
         if: always()
 
@@ -55,3 +57,15 @@ jobs:
         run: zip -r html-report.zip html-report
         # This step should always run, even if previous steps fail
         if: always()
+
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_CHANNEL: '#playwright-test-reports'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_TITLE: Playwright Tests Completed
+          SLACK_TEXT: "Playwright tests have completed. Here is the HTML report."
+          SLACK_FILE: ./html-report.zip
+          # This step should always run, even if previous steps fail
+          if: always()
