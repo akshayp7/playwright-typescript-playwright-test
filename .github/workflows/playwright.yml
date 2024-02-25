@@ -49,15 +49,10 @@ jobs:
           path: html-report.zip
 
       - name: Send Slack notification with artifact link
-        uses: peaceiris/actions-slack@v2
+        uses: peaceiris/actions-slack@v3
         with:
-          title: Playwright tests have completed
-          description: |
-            Playwright tests have completed successfully. HTML report is attached as an artifact.
-            You can download the report from the following link:
-            [Download HTML report](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/html-report)
+          text: "Playwright tests have completed successfully. HTML report is attached as an artifact. You can download it [here](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/html-report)"
+          channel: "#playwright-test-reports"
           author_name: GitHub Actions
           color: good
-          footer: ${{ github.event_name }}
-          author_icon: https://avatars.githubusercontent.com/u/44036562
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
