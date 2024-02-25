@@ -58,14 +58,10 @@ jobs:
         # This step should always run, even if previous steps fail
         if: always()
 
-      - name: Send Slack notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_CHANNEL: '#playwright-test-reports'
-          SLACK_USERNAME: GitHub Actions
-          SLACK_TITLE: Playwright Tests Completed
-          SLACK_TEXT: "Playwright tests have completed. Here is the HTML zip report."
-          SLACK_FILE: ./html-report
-          # This step should always run, even if previous steps fail
+      - name: Slack Notification
+        uses: act10ns/slack@v1
+        with:
+         channel: '#playwright-test-reports'
+         message: Playwright Tests are completed, please find attached report
+         attachments: ./html-report.zip
         if: always()
