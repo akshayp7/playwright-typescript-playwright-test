@@ -1,7 +1,5 @@
-# Name of the GitHub Actions workflow
 name: Playwright Github Actions
 
-# Define when to trigger this workflow
 on:
   push:
     branches:
@@ -10,58 +8,60 @@ on:
     branches:
       - main
 
-# Define the jobs to run in this workflow
 jobs:
-  # Define a job named 'build'
   build:
-    # Specify the operating system for this job
     runs-on: ubuntu-latest
     env:
       SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
 
-    # Define the steps to execute in this job
     steps:
-      # Step to checkout the source code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step to set up the Node.js version
       - name: Install node js v20
         uses: actions/setup-node@v2
         with:
           node-version: "20"
 
-      # Step to install Node.js dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Step to install Chrome browser for Playwright
       - name: Install Chrome browser for Playwright
         run: npx playwright install chrome
 
-      # Step to run tests with qa as environment variable similarly we can define qa|dev|qaApi|devApi
       - name: Run tests
         run: npm run test:serial
         env:
           npm_config_ENV: "qa"
 
-      # Step to wait for the job to complete
       - name: Wait for job completion
-        # Adjust the wait time as needed
         run: sleep 30s
-        # This step should always run, even if previous steps fail
         if: always()
 
-      # Step to zip html-report folder
       - name: Zip HTML report
         run: zip -r html-report.zip html-report
-        # This step should always run, even if previous steps fail
         if: always()
 
-      - name: Slack Notification
-        uses: act10ns/slack@v1
+      - name: Send Slack notification with HTML report
+        uses: rtCamp/action-slack@v3
         with:
-         channel: '#playwright-test-reports'
-         message: Playwright Tests are completed, please find attached report
-         attachments: ./html-report.zip
-        if: always()
+          text: "Playwright tests have completed. HTML report is attached."
+          channel: "#playwright-test-reports"
+          attachments: |
+            [{
+              "color": "good",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Playwright HTML Report"
+                  }
+                }
+              ],
+              "files": [
+                {
+                  "path": "./html-report.zip"
+                }
+              ]
+            }]
