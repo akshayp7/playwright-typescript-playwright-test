@@ -49,7 +49,7 @@ jobs:
           path: html-report.zip
 
       - name: Send Slack notification with artifact link
-        uses: "https://github.com/marketplace/actions/slack-action"
+        uses: docker://slack/webhook:latest
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
