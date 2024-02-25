@@ -58,6 +58,16 @@ jobs:
         # This step should always run, even if previous steps fail
         if: always()
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: html-report
+          path: html-report.zip
+
+      - name: Generate artifact link
+        id: artifact_link
+        run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+
       # Send Slack notification once the tests are completed
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
@@ -65,7 +75,6 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_CHANNEL: "#playwright-test-reports"
           SLACK_USERNAME: Playwright GitHub Actions
-          SLACK_TITLE: Playwright Tests Completed
-          SLACK_FILE: ./html-report.zip
+          SLACK_TITLE: Test results are available [here](${{ steps.artifact_link.outputs.artifact_url }}).
           # This step should always run, even if previous steps fail
         if: always()
