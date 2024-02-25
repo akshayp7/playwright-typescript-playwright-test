@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: html-report
-          path: artifacts/html-report.zip
+          path: html-report.zip
           # Specify the directory structure for the artifact
           if-no-files-found: error
         if: always()
@@ -80,7 +80,7 @@ jobs:
       - name: Generate artifact link
         id: artifact_link
         # Adjust the wait time as needed
-        run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+        run: echo "::set-output name=artifact_url::https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/"
         if: always()
 
       # Send Slack notification once the tests are completed
