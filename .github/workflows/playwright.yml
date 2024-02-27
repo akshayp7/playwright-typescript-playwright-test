@@ -48,7 +48,7 @@ jobs:
       # Step to wait for the job to complete
       - name: Wait for job completion
         # Adjust the wait time as needed
-        run: sleep 30s
+        run: sleep 10s
         # This step should always run, even if previous steps fail
         if: always()
 
