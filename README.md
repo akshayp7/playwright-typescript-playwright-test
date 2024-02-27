@@ -239,7 +239,7 @@ npm run test:ui --ENV="qa"
 ```
 
 26. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.
-27. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build tstaus and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
+27. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build status and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
 <a>https://www.youtube.com/watch?v=hzIub2noFw8&t=357s&pp=ygUUZ2l0aHViIGFjdGlvbnMgc2xhY2s%3D</a>
 
 ## Reports
