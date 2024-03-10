@@ -60,7 +60,7 @@ Bonus:
 - Shows Page performance using Lighthouse Library.
 - Docker Image is created with node:20.5.1-bookworm-slim
 - Configured GitHub Actions to get triggered on pull/push actions
-- Slack Notifications with html-report url once Github Actions is complated.
+- Slack Notifications with html-report url once Github Actions is completed.
 
 ### Built With
 
