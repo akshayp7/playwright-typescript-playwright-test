@@ -68,7 +68,6 @@ Bonus:
 - [Typescript](https://www.typescriptlang.org/)
 - [node-postgres](https://github.com/brianc/node-postgres)
 - [excel-js](https://github.com/exceljs/exceljs)
-- [adm-zip](https://www.npmjs.com/package/adm-zip)
 - [ESLint](https://eslint.org/)
 - [SonarQube](https://www.sonarqube.org/)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
@@ -179,23 +178,22 @@ npm run test:device --ENV="qa"
 npm run allureReport
 ```
 11. For HTML Report generation execute below command , single static HTML report(index.html) which can be sent via email is generated in "html-report" folder:
-12. For converting HTML Reports to zip file "adm-zip" library is used, the logic is implemented in `global-teardown.ts` , to make sure this runs after all the test are executed and after reports are generated, `global-teardown.ts` is given as a parameter for "globalTeardown" in `playwright.config.ts` file. Results are generated as `html-report.zip` in project directory. 
-13. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
-14. Screenshots, Videos and Trace files will be generated in test-results folder.
-15. To change your username go to `testConfig.ts` and provide value against `username`
-16. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
-17. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
-18. For viewing trace files, go to folder where `trace.zip` is generated and execute :
+12. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
+13. Screenshots, Videos and Trace files will be generated in test-results folder.
+14. To change your username go to `testConfig.ts` and provide value against `username`
+15. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
+16. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
+17. For viewing trace files, go to folder where `trace.zip` is generated and execute :
 ```JS
 npx playwright show-trace trace.zip
 ```
-19. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
-20. In `tsconfig.json` file in `paths` section we can re-assign the long path imports like '../../' to a variable which starts with '@' and then we can use it to shorten our import statements in respective file.
+18. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
+19. In `tsconfig.json` file in `paths` section we can re-assign the long path imports like '../../' to a variable which starts with '@' and then we can use it to shorten our import statements in respective file.
 In the below example wherever '../../pageFactory/pageRepository/' import statement is used we can replace it with '@pages'
 ```JS
 "@pages/*":["pageFactory/pageRepository/*"]
 ```
-21. Network Replay : 
+20. Network Replay : 
 For using this featre in Playwright we use HAR file. 
 HAR (HTTP Archive) is a file format used by several HTTP session tools to export the captured data. This can be highly useful in troubleshooting complex issues by obtaining additional information about the network requests that are generated in the browser while an issue occurs.
 
@@ -212,7 +210,7 @@ await page.routeFromHAR('har/personalInfo.har',{update:false});
 where `update:false` means to use the existing HAR from from the path given in first paraeter `har/personalInfo.har`, to see this in action you can turn off your internet and run the script, complete webpage is mocked up along with assertions on the browser of your choice this is done using the Network Replay feature and by using our recorded HAR file.
 We can use this feature when webpage is down for some reason and we want to test some scenarios. 
 
-22. Logging is implemented in `CustomReporterConfig.ts` using winston logger. 
+21. Logging is implemented in `CustomReporterConfig.ts` using winston logger. 
 
 First we have to create a logger object using winston.createLogger and then provid the configuration you need.
 First argument is "level" for which i have provided value as "info", in winston logger every logging level is provided with a numeric value, for info the numeric value is 2, so if we provide level as info then all the logs which are equal to or less than info level will be displayed. In our case logs with error(0) and warn(1) wil also be logged. For more info on logging refer below link
@@ -227,19 +225,19 @@ Once logger object is created I have provided `logger.add(console);` which instr
 
 Once logger object is created you can use this instead of console.log in your framework and these logs will be written both in your console and log file.
 
-23. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
+22. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
 ```JS
 npm run test:ui --ENV="qa"
 ```
-24. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
+23. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
 
-25. Accessibility test case is written in `tests/accessibility/Axe.test.ts`, to run this test use the command
+24. Accessibility test case is written in `tests/accessibility/Axe.test.ts`, to run this test use the command
 ```JS
  npm run test:accessibility --ENV="qa"
 ```
 
-26. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.
-27. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build status and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
+25. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.
+26. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build status and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
 <a>https://www.youtube.com/watch?v=hzIub2noFw8&t=357s&pp=ygUUZ2l0aHViIGFjdGlvbnMgc2xhY2s%3D</a>
 
 ## Reports
