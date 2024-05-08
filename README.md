@@ -7,7 +7,8 @@
             <li>
               <a href="#about-the-project">About the Project</a>
               <ul>
-                <li><a href="#built-with">Built With</a>
+                <li><a href="#youtube-video-tutorial">Youtube Video Tutorial</a></li>
+                <li><a href="#built-with">Built With</a></li>
               </ul>
             </li>
             <li>
@@ -61,6 +62,9 @@ Bonus:
 - Docker Image is created with node:20.5.1-bookworm-slim
 - Configured GitHub Actions to get triggered on pull/push actions
 - Slack Notifications with html-report url once Github Actions is completed.
+
+### Youtube Video Tutorial
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mKdBAXNsY1Y/0.jpg)](https://www.youtube.com/watch?v=mKdBAXNsY1Y)
 
 ### Built With
 
