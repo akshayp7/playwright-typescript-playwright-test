@@ -3,7 +3,7 @@ import { test } from '@playwright/test';
 
 const apiActions = new APIActions();
 
-test(`@API getUsers`, async ({ request }) => {
+test(`getUsers`, { tag: '@API'}, async ({ request }) => {
     const response = await request.get(`/api/users?per_page=1`);
     await apiActions.verifyStatusCode(response);
 
