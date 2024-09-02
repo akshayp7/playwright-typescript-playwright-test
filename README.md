@@ -49,7 +49,7 @@ Top Features:
 - To slow down execution slowMo option is available.
 - Supports 'download' event monitoring, so there is no need for user to actually wait for downloads to finish.
 - Supports Serial and Parallel execution.
-- Allure/HTML Reports are generated after execution with an option to capture screenshot/video/trace file on failure.
+- Allure/HTML/Ortoni HTML Reports are generated after execution with an option to capture screenshot/video/trace file on failure.
 - Nonetheless Support from Microsoft so FREQUENT RELEASES and turn arounf time for any queries is 48 hours.
 
 Bonus:
@@ -76,6 +76,7 @@ Bonus:
 - [SonarQube](https://www.sonarqube.org/)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - [pdfjs-dist-es5](https://www.npmjs.com/package/pdfjs-dist-es5)
+- [ortoni-report] (https://github.com/ortoniKC/ortoni-report)
 
 ## Getting Started
 
@@ -121,6 +122,10 @@ npm install
 
 ```sh
 npx playwright install
+```
+4. For MAC and Ubuntu OS before running please exexute below code as per your environment qa|dev
+```sh
+export npm_config_ENV="qa"
 ```
 
 <!-- USAGE EXAMPLES-->
@@ -243,6 +248,8 @@ npm run test:ui --ENV="qa"
 25. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.
 26. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build status and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
 <a>https://www.youtube.com/watch?v=hzIub2noFw8&t=357s&pp=ygUUZ2l0aHViIGFjdGlvbnMgc2xhY2s%3D</a>
+27. For Configuring Ortoni HTML Report, navigate to "playwright.config.ts" and provide desired changes "reportConfig" variable, then pass this variable in reporter section as ,['ortoni-report', reportConfig]. For more details on this please refer below video
+<a>https://www.youtube.com/watch?v=HMaiL6cARZk</a>
 
 ## Reports
 
