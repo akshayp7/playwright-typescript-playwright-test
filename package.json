@@ -26,20 +26,20 @@
   "license": "MIT",
   "dependencies": {
     "@axe-core/playwright": "^4.10.0",
-    "@playwright/test": "^1.46.1",
+    "@playwright/test": "^1.47.2",
     "@types/crypto-js": "^4.2.2",
     "@typescript-eslint/eslint-plugin": "^8.3.0",
     "@typescript-eslint/parser": "^8.3.0",
-    "allure-playwright": "^3.0.0-beta.11",
+    "allure-playwright": "^3.0.1",
     "crypto-js": "^4.2.0",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "exceljs": "^4.4.0",
     "lighthouse": "^9.6.8",
-    "ortoni-report": "^2.0.2",
+    "ortoni-report": "^2.0.3",
     "pdfjs-dist-es5": "^2.13.216",
-    "pg": "^8.12.0",
-    "typescript": "^5.5.4",
+    "pg": "^8.13.0",
+    "typescript": "^5.6.2",
     "winston": "^3.14.2"
   }
 }
