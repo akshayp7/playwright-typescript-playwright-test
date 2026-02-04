@@ -41,9 +41,9 @@ jobs:
 
       # Step to run tests with qa as environment variable similarly we can define qa|dev|qaApi|devApi
       - name: Run tests
-        run: npm run test:serial
+        run: npm run test:serial:ci
         env:
-          npm_config_ENV: "qa"
+          ENV: "qa"
 
       # Step to wait for the job to complete
       - name: Wait for job completion

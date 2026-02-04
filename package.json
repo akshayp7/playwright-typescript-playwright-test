@@ -11,6 +11,7 @@
     "test:single": "cross-env ENV=%ENV% npx playwright test Login.test.ts --project=Chrome",
     "test:parallel": "cross-env ENV=%ENV% npx playwright test --grep @Smoke --project=Chrome",
     "test:serial": "cross-env ENV=%ENV% npx playwright test --grep @Smoke --workers=1 --project=Chrome",
+    "test:serial:ci": "npx playwright test --grep @Smoke --workers=1 --project=Chrome",
     "test:ui": "cross-env ENV=%ENV% npx playwright test --grep @Smoke --ui",
     "test:api": "cross-env ENV=%ENV% npx playwright test --grep @API --workers=1 --project=Chrome",
     "test:db": "cross-env ENV=%ENV% npx playwright test DB.test.ts --project=DB",
