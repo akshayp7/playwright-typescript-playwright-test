@@ -3,6 +3,7 @@ import { testConfig } from './testConfig';
 import { OrtoniReportConfig } from 'ortoni-report';
 
 const ENV = process.env.ENV || process.env.npm_config_ENV; // Support both modern and legacy patterns
+const isCI = !!process.env.CI; // Detect if running in CI environment
 
 if (!ENV || ![`qa`, `dev`, `qaApi`, `devApi`].includes(ENV)) {
   console.log(`Please provide a correct environment value after command like "--ENV=qa|dev|qaApi|devApi"`);
@@ -31,7 +32,9 @@ const config: PlaywrightTestConfig = {
   retries: 0,
 
   //Reporters
-  reporter: [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }],['ortoni-report', reportConfig]],
+  reporter: isCI 
+    ? [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }]]
+    : [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }],['ortoni-report', reportConfig]],
 
   projects: [
     {
@@ -47,7 +50,7 @@ const config: PlaywrightTestConfig = {
         baseURL: testConfig[ENV],
 
         //Browser Mode
-        headless: false,
+        headless: isCI ? true : false,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },

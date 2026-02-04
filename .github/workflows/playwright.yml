@@ -44,6 +44,7 @@ jobs:
         run: npm run test:serial:ci
         env:
           ENV: "qa"
+          CI: true
 
       # Step to wait for the job to complete
       - name: Wait for job completion
