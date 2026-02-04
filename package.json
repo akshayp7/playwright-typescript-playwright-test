@@ -3,20 +3,23 @@
   "version": "1.0.0",
   "description": "Playwright Framework with Typescript",
   "main": "index.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
-    "test": "npx playwright test",
-    "test:single": "npx playwright test Login.test.ts --project=Chrome",
-    "test:parallel": "npx playwright test --grep @Smoke --project=Chrome",
-    "test:serial": "npx playwright test --grep @Smoke --workers=1 --project=Chrome",
-    "test:ui": "npx playwright test --grep @Smoke --ui",
-    "test:api": "npx playwright test --grep @API --workers=1 --project=Chrome",
-    "test:db": "npx playwright test DB.test.ts --project=DB",
+    "test": "cross-env ENV=%ENV% npx playwright test",
+    "test:single": "cross-env ENV=%ENV% npx playwright test Login.test.ts --project=Chrome",
+    "test:parallel": "cross-env ENV=%ENV% npx playwright test --grep @Smoke --project=Chrome",
+    "test:serial": "cross-env ENV=%ENV% npx playwright test --grep @Smoke --workers=1 --project=Chrome",
+    "test:ui": "cross-env ENV=%ENV% npx playwright test --grep @Smoke --ui",
+    "test:api": "cross-env ENV=%ENV% npx playwright test --grep @API --workers=1 --project=Chrome",
+    "test:db": "cross-env ENV=%ENV% npx playwright test DB.test.ts --project=DB",
     "test:record": "npx playwright codegen",
-    "test:visual": "npx playwright test visualComparision.test.ts --project=Chrome",
-    "test:device": "npx playwright test Emulation.test.ts --project=Device",
+    "test:visual": "cross-env ENV=%ENV% npx playwright test visualComparision.test.ts --project=Chrome",
+    "test:device": "cross-env ENV=%ENV% npx playwright test Emulation.test.ts --project=Device",
     "allureReport": "allure serve",
     "lighthouse": "node tests/lighthouse/Lighthouse.js",
-    "test:accessibility": "npx playwright test Axe.test.ts --project=Chrome"
+    "test:accessibility": "cross-env ENV=%ENV% npx playwright test Axe.test.ts --project=Chrome"
   },
   "repository": {
     "type": "git",
@@ -25,21 +28,22 @@
   "author": "Akshay Pai",
   "license": "MIT",
   "dependencies": {
-    "@axe-core/playwright": "^4.10.0",
-    "@playwright/test": "^1.47.2",
+    "@axe-core/playwright": "^4.11.1",
+    "cross-env": "^10.1.0",
+    "@playwright/test": "^1.58.1",
     "@types/crypto-js": "^4.2.2",
-    "@typescript-eslint/eslint-plugin": "^8.3.0",
-    "@typescript-eslint/parser": "^8.3.0",
-    "allure-playwright": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "allure-playwright": "^3.4.5",
     "crypto-js": "^4.2.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^9.39.2",
+    "eslint-plugin-import": "^2.32.0",
     "exceljs": "^4.4.0",
     "lighthouse": "^9.6.8",
-    "ortoni-report": "^2.0.3",
+    "ortoni-report": "^4.0.5",
     "pdfjs-dist-es5": "^2.13.216",
-    "pg": "^8.13.0",
-    "typescript": "^5.6.2",
-    "winston": "^3.14.2"
+    "pg": "^8.18.0",
+    "typescript": "^5.9.3",
+    "winston": "^3.19.0"
   }
 }

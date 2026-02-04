@@ -123,44 +123,95 @@ npm install
 ```sh
 npx playwright install
 ```
-4. For MAC and Ubuntu OS before running please exexute below code as per your environment qa|dev
-```sh
-export npm_config_ENV="qa"
-```
 
 <!-- USAGE EXAMPLES-->
 
 ## Usage
 
 1. For Browser Configuration, change required parameters in `playwright.config.ts`.
-2. For execution entire test suite on all available browsers simultaneously execute below command where "ENV" can be "qa" or "dev", `Test Cases are present in "tests" folder`:
+2. For execution entire test suite on all available browsers simultaneously execute below command where "ENV" can be "qa" or "dev", `Test Cases are present in "tests" folder`. **You must provide the ENV variable:**
 
-```JS
-npm run test --ENV="qa"
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test
 ```
 
 3. For executing single test case on Chrome browser execute the below command, you can change the browser for execution e.g. if you want to run test cases on Firefox, you can change `--project=Firefox` against `test:single` in `package.json`, just make sure the browser name given matches the name given in `playwright.config.ts`.
 
-```JS
-npm run test:single --ENV="qa"
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:single
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:single
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:single
 ```
 
 4. For executing test cases in parallel, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:parallel` give the tag value and execute :
 
-```JS
-npm run test:parallel --ENV="qa"
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:parallel
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:parallel
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:parallel
 ```
 
 5. For executing test cases in sequence, provide a suitable tag `@SmokeTest` at the start of your test case name, then in `package.json` against `test:serial` give the tag value and execute, `workers` parameter correspond to test cases you want to execute simultaneously e.g. `--workers=3`, executes 3 test cases simultaneously :
 
-```JS
-npm run test:serial --ENV="qa"
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:serial
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:serial
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:serial
 ```
 
 6. For executing API test cases, please provide "ENV" value as "qaApi" or "devApi" :
 
-```JS
-npm run test:api --ENV="qaApi" 
+**Windows CMD:**
+```batch
+set ENV=qaApi && npm run test:api
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qaApi"; npm run test:api
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qaApi npm run test:api
 ```
 
 7. For recording test scripts :
@@ -171,14 +222,36 @@ npm run test:record
 
 8. To produce and visually compare screenshots execute below command. On first execution reference screenshot will be generated for comparision with subsequent runs.
 
-```JS
-npm run test:visual --ENV="qa"
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:visual
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:visual
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:visual
 ```
 
 9. For emulating test cases on any device, in `playwright.config.ts`, under device section provide desired device name and execute :
 
-```JS
-npm run test:device --ENV="qa"
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:device
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:device
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:device
 ```
 
 10. For Allure Report generation execute :
@@ -235,14 +308,39 @@ Once logger object is created I have provided `logger.add(console);` which instr
 Once logger object is created you can use this instead of console.log in your framework and these logs will be written both in your console and log file.
 
 22. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
-```JS
-npm run test:ui --ENV="qa"
+
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:ui
 ```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:ui
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:ui
+```
+
 23. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
 
 24. Accessibility test case is written in `tests/accessibility/Axe.test.ts`, to run this test use the command
-```JS
- npm run test:accessibility --ENV="qa"
+
+**Windows CMD:**
+```batch
+set ENV=qa && npm run test:accessibility
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; npm run test:accessibility
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa npm run test:accessibility
 ```
 
 25. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.

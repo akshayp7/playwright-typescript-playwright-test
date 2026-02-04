@@ -2,7 +2,7 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 import { testConfig } from './testConfig';
 import { OrtoniReportConfig } from 'ortoni-report';
 
-const ENV = process.env.npm_config_ENV;
+const ENV = process.env.ENV || process.env.npm_config_ENV; // Support both modern and legacy patterns
 
 if (!ENV || ![`qa`, `dev`, `qaApi`, `devApi`].includes(ENV)) {
   console.log(`Please provide a correct environment value after command like "--ENV=qa|dev|qaApi|devApi"`);
@@ -15,7 +15,6 @@ const reportConfig: OrtoniReportConfig = {
   showProject: true,
   filename: "OrtoniHtmlReport",
   authorName: "Akshay Pai",
-  preferredTheme: "dark",
   folderPath: "html-report",
   projectName: "Playwright Framework with Typescript",
 }
@@ -48,7 +47,7 @@ const config: PlaywrightTestConfig = {
         baseURL: testConfig[ENV],
 
         //Browser Mode
-        headless: true,
+        headless: false,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },
