@@ -60,8 +60,7 @@ const config: PlaywrightTestConfig = {
         baseURL: testConfig[currentEnvironment],
 
         //Browser Mode
-        // headless: isCI ? true : false,
-        headless : false,
+        headless: isCI ? true : false,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },

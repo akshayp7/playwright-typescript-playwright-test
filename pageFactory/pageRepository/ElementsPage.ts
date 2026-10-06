@@ -42,7 +42,7 @@ export class ElementsPage {
         this.DOUBLE_CLICK_TEXT = page.getByText('You have done a double click');
         this.RIGHT_CLICK_BUTTON = page.locator('#rightClickBtn');
         this.RIGHT_CLICK_TEXT = page.getByText('You have done a right click');
-        this.HOME_LINK = page.getByText('Home', { exact: true });
+        this.HOME_LINK = page.locator('#simpleLink');
         this.DOWNLOAD_BUTTON = page.locator(`#downloadButton`);
         this.UPLOAD_BUTTON = page.locator(`#uploadFile`)
         this.UPLOADED_FILE_TEXT = page.getByText('sampleFile.jpeg');
@@ -61,8 +61,7 @@ export class ElementsPage {
     }
 
     async getFirstColumnTableHeader(): Promise<string> {
-        const headerText = await this.WEB_TABLES_HEADER.allTextContents(); // Get all Text from WebTable Header
-        return headerText[0];
+        return await this.WEB_TABLES_HEADER.first().innerText();
     }
 
     async editCierraEntry(): Promise<void> {
