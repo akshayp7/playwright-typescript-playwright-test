@@ -12,85 +12,75 @@ on:
 
 # Define the jobs to run in this workflow
 jobs:
-  # Define a job named 'build'
-  build:
-    # Specify the operating system for this job
+  playwright-tests:
+    name: Playwright shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
     env:
-      SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
+      ENV: "qa"
+      CI: true
 
-    # Define the steps to execute in this job
     steps:
-      # Step to checkout the source code from the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step to set up the Node.js version
       - name: Install node js v20
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # Step to install Node.js dependencies
       - name: Install dependencies
         run: npm ci
 
-      # Step to install Chrome browser for Playwright
       - name: Install Chrome browser for Playwright
-        run: npx playwright install chrome
+        run: npx playwright install --with-deps chrome
 
-      # Step to run tests with qa as environment variable similarly we can define qa|dev|qaApi|devApi
-      - name: Run tests
-        run: npm run test:serial:ci
-        env:
-          ENV: "qa"
-          CI: true
+      - name: Run tests for this shard
+        run: npx playwright test --grep @Smoke --workers=1 --project=Chrome --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
-      # Step to wait for the job to complete
-      - name: Wait for job completion
-        # Adjust the wait time as needed
-        run: sleep 10s
-        # This step should always run, even if previous steps fail
-        if: always()
+      - name: Upload blob report to GitHub Actions artifacts
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-${{ matrix.shardIndex }}
+          path: blob-report
+          retention-days: 1
 
-      # Check if HTML report exists
-      - name: Check if HTML report exists
-        run: |
-          if [ -d "html-report" ]; then
-            echo "HTML report exists."
-          else
-            echo "HTML report does not exist. Exiting..."
-            exit 1
-          fi
-        if: always()
+  merge-reports:
+    if: ${{ !cancelled() }}
+    needs: [playwright-tests]
+    runs-on: ubuntu-latest
 
-      # Step to zip html-report folder
-      - name: Zip HTML report
-        run: zip -r html-report.zip html-report
-        # This step should always run, even if previous steps fail
-        if: always()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # Step to upload artifact
-      - name: Upload artifact
+      - name: Install node js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download blob reports from GitHub Actions artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge blob reports into HTML report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload merged HTML report
         uses: actions/upload-artifact@v4
         with:
           name: html-report
-          path: html-report.zip
+          path: playwright-report
           if-no-files-found: error
-        if: always()
-
-      # Step to generate artifact link
-      - name: Generate artifact link
-        id: artifact_link
-        run: echo "artifact_url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
-        if: always()
-
-      # Send Slack notification with html-reprt url once the tests are completed
-      - name: Send Slack notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_CHANNEL: "#playwright-test-reports"
-          SLACK_USERNAME: Playwright GitHub Actions
-          SLACK_MESSAGE: "Test results are available in [Artifacts section](${{ steps.artifact_link.outputs.artifact_url }}) as html-report."
-        if: always()
+          retention-days: 14

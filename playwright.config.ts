@@ -42,9 +42,9 @@ const config: PlaywrightTestConfig = {
   retries: 0,
 
   //Reporters
-  reporter: isCI 
-    ? [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }]]
-    : [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }],['ortoni-report', reportConfig]],
+  reporter: isCI
+    ? [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`blob`]]
+    : [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }], ['ortoni-report', reportConfig]],
 
   projects: [
     {

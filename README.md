@@ -18,7 +18,12 @@
                 <li><a href="#installation">Installation</a>
               </ul>
             </li>
-            <li><a href="#usage">Usage</a></li>
+            <li>
+              <a href="#usage">Usage</a>
+              <ul>
+                <li><a href="#sharding">Sharding</a></li>
+              </ul>
+            </li>
             <li><a href="#reports">Reports</a></li>
             <li><a href="#sonarqube">SonarQube</a></li>
             <li><a href="#docker">Docker</a></li>
@@ -197,7 +202,48 @@ $env:ENV="qa"; npm run test:serial
 ENV=qa npm run test:serial
 ```
 
-6. For executing API test cases, please provide "ENV" value as "qaApi" or "devApi". ReqRes API tests also require `REQRES_API_KEY`, because ReqRes expects the `x-api-key` request header:
+### Sharding
+
+Sharding is supported in this project for faster execution in CI by splitting the suite into smaller chunks and then merging the reports into a single HTML report.
+
+6. Run a single shard locally:
+
+**Windows CMD:**
+```batch
+set ENV=qa && set SHARD_INDEX=1 && set SHARD_TOTAL=4 && npm run test:shard
+```
+
+**Windows PowerShell:**
+```powershell
+$env:ENV="qa"; $env:SHARD_INDEX="1"; $env:SHARD_TOTAL="4"; npm run test:shard
+```
+
+**Mac/Linux/WSL:**
+```bash
+ENV=qa SHARD_INDEX=1 SHARD_TOTAL=4 npm run test:shard
+```
+
+Playwright uses `--shard=current/total` to split your suite. For example, the project is configured to run 4 shards using the GitHub Actions matrix:
+
+```yaml
+strategy:
+  fail-fast: false
+  matrix:
+    shardIndex: [1, 2, 3, 4]
+    shardTotal: [4]
+```
+
+Each shard writes a `blob` report and then the final job downloads all blob reports and merges them using:
+
+```bash
+npx playwright merge-reports --reporter html ./all-blob-reports
+```
+
+This produces a single HTML report in the `playwright-report` folder.
+
+The CI workflow also keeps custom reporting enabled with the existing custom reporter and Allure reports while using blob reports only for the sharded run. This ensures you can still maintain your custom output while supporting sharding in GitHub Actions.
+
+7. For executing API test cases, please provide "ENV" value as "qaApi" or "devApi". ReqRes API tests also require `REQRES_API_KEY`, because ReqRes expects the `x-api-key` request header:
 
 **Windows CMD:**
 ```batch
@@ -214,13 +260,13 @@ $env:ENV="qaApi"; $env:REQRES_API_KEY="your_reqres_key"; npm run test:api
 ENV=qaApi REQRES_API_KEY=your_reqres_key npm run test:api
 ```
 
-7. For recording test scripts :
+8. For recording test scripts :
 
 ```JS
 npm run test:record
 ```
 
-8. To produce and visually compare screenshots execute below command. On first execution reference screenshot will be generated for comparision with subsequent runs.
+9. To produce and visually compare screenshots execute below command. On first execution reference screenshot will be generated for comparision with subsequent runs.
 
 **Windows CMD:**
 ```batch
@@ -237,7 +283,7 @@ $env:ENV="qa"; npm run test:visual
 ENV=qa npm run test:visual
 ```
 
-9. For emulating test cases on any device, in `playwright.config.ts`, under device section provide desired device name and execute :
+10. For emulating test cases on any device, in `playwright.config.ts`, under device section provide desired device name and execute :
 
 **Windows CMD:**
 ```batch
@@ -254,28 +300,28 @@ $env:ENV="qa"; npm run test:device
 ENV=qa npm run test:device
 ```
 
-10. For Allure Report generation execute :
+11. For Allure Report generation execute :
 
 ```JS
 npm run allureReport
 ```
-11. For HTML Report generation execute below command , single static HTML report(index.html) which can be sent via email is generated in "html-report" folder:
-12. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
-13. Screenshots, Videos and Trace files will be generated in test-results folder.
-14. To change your username go to `testConfig.ts` and provide value against `username`
-15. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
-16. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
-17. For viewing trace files, go to folder where `trace.zip` is generated and execute :
+12. For HTML Report generation execute below command , single static HTML report(index.html) which can be sent via email is generated in "html-report" folder:
+13. For debugging test cases add debug points, the press CNTRL+SHIFT+P and type "debug:debug npm script", on the edit box select desired script.
+14. Screenshots, Videos and Trace files will be generated in test-results folder.
+15. To change your username go to `testConfig.ts` and provide value against `username`
+16. To change password, go to `lib/WebActions` in `decipherPassword()` uncomment `ENCRYPT` code block and replace `password` with your password, execute the test case, Encrypted password will be printed on your console . Copy Encrypted password in `testConfig.ts` against `password` field. You can comment Encrypt bloack ater this.
+17. For executing Postgres DB test case, navigate to `testConfig.ts` and provide values for `dbUsername, dbPassword, dbServerName, dbPort, dbName`. Refer to `tests/DB.test.ts` for connecting to DB and Firing a Query.
+18. For viewing trace files, go to folder where `trace.zip` is generated and execute :
 ```JS
 npx playwright show-trace trace.zip
 ```
-18. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
-19. In `tsconfig.json` file in `paths` section we can re-assign the long path imports like '../../' to a variable which starts with '@' and then we can use it to shorten our import statements in respective file.
+19. You can change the Logging Message at Test Case/Test Step Level in CustomReporterConfig.ts file
+20. In `tsconfig.json` file in `paths` section we can re-assign the long path imports like '../../' to a variable which starts with '@' and then we can use it to shorten our import statements in respective file.
 In the below example wherever '../../pageFactory/pageRepository/' import statement is used we can replace it with '@pages'
 ```JS
 "@pages/*":["pageFactory/pageRepository/*"]
 ```
-20. Network Replay : 
+21. Network Replay : 
 For using this featre in Playwright we use HAR file. 
 HAR (HTTP Archive) is a file format used by several HTTP session tools to export the captured data. This can be highly useful in troubleshooting complex issues by obtaining additional information about the network requests that are generated in the browser while an issue occurs.
 
@@ -292,7 +338,7 @@ await page.routeFromHAR('har/personalInfo.har',{update:false});
 where `update:false` means to use the existing HAR from from the path given in first paraeter `har/personalInfo.har`, to see this in action you can turn off your internet and run the script, complete webpage is mocked up along with assertions on the browser of your choice this is done using the Network Replay feature and by using our recorded HAR file.
 We can use this feature when webpage is down for some reason and we want to test some scenarios. 
 
-21. Logging is implemented in `CustomReporterConfig.ts` using winston logger. 
+22. Logging is implemented in `CustomReporterConfig.ts` using winston logger. 
 
 First we have to create a logger object using winston.createLogger and then provid the configuration you need.
 First argument is "level" for which i have provided value as "info", in winston logger every logging level is provided with a numeric value, for info the numeric value is 2, so if we provide level as info then all the logs which are equal to or less than info level will be displayed. In our case logs with error(0) and warn(1) wil also be logged. For more info on logging refer below link
@@ -307,7 +353,7 @@ Once logger object is created I have provided `logger.add(console);` which instr
 
 Once logger object is created you can use this instead of console.log in your framework and these logs will be written both in your console and log file.
 
-22. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
+23. UI mode in Playwright is lets you explore, run and debug tests, it comes with a built-in watch mode. It opens like Traceviewer where you can use the window to find selectors, its directly integrated to VS Code, all the browsers definned in playwright config will be automatically picked up and you can chosse to run individual test cases in browser of choice and also we can run tests directly from UI mode instead of IDE. I have used the tag `@Smoke` in `test:ui` section of package.json, because all my UI test cases are tagged with `@Smoke` tag and we want to run only Web based test cases. To use UI mode use below command with `ENV` value of your choice
 
 **Windows CMD:**
 ```batch
@@ -324,9 +370,9 @@ $env:ENV="qa"; npm run test:ui
 ENV=qa npm run test:ui
 ```
 
-23. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
+24. For Extracting text from PDF we are using `pdfjs-dist-es5` library. You can run the test case `PdfToText.test.ts` to verify contents of PDF file. `getPDFText()` method in `lib/WebActions.ts` class is used for extracting text from PDF file.
 
-24. Accessibility test case is written in `tests/accessibility/Axe.test.ts`, to run this test use the command
+25. Accessibility test case is written in `tests/accessibility/Axe.test.ts`, to run this test use the command
 
 **Windows CMD:**
 ```batch
@@ -343,10 +389,10 @@ $env:ENV="qa"; npm run test:accessibility
 ENV=qa npm run test:accessibility
 ```
 
-25. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.
-26. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build status and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
+26. GitHub Actions is configured in `.github/workflows/playwright.yml` file and events(trigger points) are set to pus/pull actions on master branch. Changes in command to run test cases can be made in "Run tests" section in this file.
+27. Once GitHub Actions job is completed Slack notification is triggered to the assigned channel with build status and html-report link. For enabling Slack you have to configure Incoming Webhooks for your repo, below is the great tutorial on that.
 <a>https://www.youtube.com/watch?v=hzIub2noFw8&t=357s&pp=ygUUZ2l0aHViIGFjdGlvbnMgc2xhY2s%3D</a>
-27. For Configuring Ortoni HTML Report, navigate to "playwright.config.ts" and provide desired changes "reportConfig" variable, then pass this variable in reporter section as ,['ortoni-report', reportConfig]. For more details on this please refer below video
+28. For Configuring Ortoni HTML Report, navigate to "playwright.config.ts" and provide desired changes "reportConfig" variable, then pass this variable in reporter section as ,['ortoni-report', reportConfig]. For more details on this please refer below video
 <a>https://www.youtube.com/watch?v=HMaiL6cARZk</a>
 
 ## Reports
