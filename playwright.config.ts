@@ -2,7 +2,7 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 import { testConfig } from './testConfig';
 import { OrtoniReportConfig } from 'ortoni-report';
 
-const ENV = process.env.ENV || process.env.npm_config_ENV; // Support both modern and legacy patterns
+const ENV = process.env.ENV;
 const isCI = !!process.env.CI; // Detect if running in CI environment
 const validEnvironments = [`qa`, `dev`, `qaApi`, `devApi`] as const;
 type TestEnvironment = typeof validEnvironments[number];
@@ -34,12 +34,12 @@ const config: PlaywrightTestConfig = {
 
   //Global Setup to run before all tests
   globalSetup: `./global-setup`,
-
+  workers: 1,
   //sets timeout for each test case
   timeout: 120000,
 
   //number of retries if test case fails
-  retries: 0,
+  retries: 1,
 
   //Reporters
   reporter: isCI 
@@ -49,6 +49,7 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: `Chrome`,
+      retries: 1,
       use: {
         // Configure the browser to use.
         browserName: `chromium`,
@@ -73,16 +74,17 @@ const config: PlaywrightTestConfig = {
         //Artifacts
         screenshot: `only-on-failure`,
         video: `retain-on-failure`,
-        trace: `retain-on-failure`,
+        trace: `on-first-retry`,
 
         //Slows down execution by ms
         launchOptions: {
-          slowMo: 0
+          slowMo: 2000
         }
       },
     },
     {
       name: `Chromium`,
+      retries: 1,
       use: {
         browserName: `chromium`,
         baseURL: testConfig[currentEnvironment],
@@ -94,7 +96,7 @@ const config: PlaywrightTestConfig = {
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
         launchOptions: {
-          slowMo: 0
+          slowMo: 2000
         }
       },
     },
@@ -112,13 +114,14 @@ const config: PlaywrightTestConfig = {
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
         launchOptions: {
-          slowMo: 0
+          slowMo: 2000
         }
       },
     },
 
     {
       name: `Edge`,
+      retries: 1,
       use: {
         browserName: `chromium`,
         channel: `msedge`,
@@ -131,12 +134,13 @@ const config: PlaywrightTestConfig = {
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
         launchOptions: {
-          slowMo: 0
+          slowMo: 2000
         }
       },
     },
     {
       name: `WebKit`,
+      retries: 1,
       use: {
         browserName: `webkit`,
         baseURL: testConfig[currentEnvironment],
@@ -148,7 +152,7 @@ const config: PlaywrightTestConfig = {
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
         launchOptions: {
-          slowMo: 0
+          slowMo: 2000
         }
       },
     },
@@ -166,7 +170,7 @@ const config: PlaywrightTestConfig = {
         video: `retain-on-failure`,
         trace: `retain-on-failure`,
         launchOptions: {
-          slowMo: 0
+          slowMo: 2000
         }
       },
     },

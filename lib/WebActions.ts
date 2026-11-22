@@ -1,6 +1,6 @@
 import fs from 'fs';
 import * as CryptoJS from 'crypto-js';
-import type { Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { BrowserContext, expect } from '@playwright/test';
 import { Workbook } from 'exceljs';
 import { testConfig } from '../testConfig';
@@ -27,6 +27,10 @@ export class WebActions {
         return new Promise(function (resolve) {
             setTimeout(resolve, time);
         });
+    }
+
+    async clickElement(element: Locator){
+        await element.click();
     }
 
     async clickByText(text: string): Promise<void> {

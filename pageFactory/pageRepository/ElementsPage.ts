@@ -24,6 +24,10 @@ export class ElementsPage {
     readonly DOWNLOAD_BUTTON: Locator;
     readonly UPLOAD_BUTTON: Locator;
     readonly UPLOADED_FILE_TEXT: Locator;
+    readonly fileLocator: Locator;
+    readonly dblClickText : Locator;
+    readonly table : Locator;
+    readonly columns : Locator;
 
     constructor(page: Page, context: BrowserContext) {
         this.page = page;
@@ -46,6 +50,11 @@ export class ElementsPage {
         this.DOWNLOAD_BUTTON = page.locator(`#downloadButton`);
         this.UPLOAD_BUTTON = page.locator(`#uploadFile`)
         this.UPLOADED_FILE_TEXT = page.getByText('sampleFile.jpeg');
+        this.ELEMENTS_TITLE = page.getByRole('heading', {name: 'Elements'});
+        this.fileLocator = page.locator('input[type="file"]')
+        this.dblClickText = page.locator('#doubleClickMessage')
+        this.table = page.locator('table tr')
+        this.columns = page.locator('th, td');
     }
 
     async enterFullName(name: string): Promise<void> {
@@ -58,6 +67,15 @@ export class ElementsPage {
 
     async clickHomeCheckBox(): Promise<void> {
         await this.HOME_CHECK_BOX.check();
+    }
+
+    async uploadAFile(): Promise<void> {
+        const location = await this.fileLocator.setInputFiles('/Users/rohit/Downloads/Playwright.pdf');
+        const chooseFilePromise = await this.page.waitForEvent('filechooser')
+        //wait for dialog to appear and then click on choose file button
+        await this.UPLOAD_BUTTON.click();
+        const chooseFile = await chooseFilePromise;
+        await chooseFile.setFiles('Playwright.pdf')
     }
 
     async getFirstColumnTableHeader(): Promise<string> {
@@ -96,13 +114,29 @@ export class ElementsPage {
         await this.DOWNLOAD_BUTTON.click();
         // Wait for the download process to complete.
         const download = await downloadPromise;
-        // File will be downloaded in the Downloads folder of thos project
-        await download.saveAs(path.join(__dirname, `../../Downloads`, download.suggestedFilename()));
+        // File will be downloaded in the path specified. You can also give your own filename as 'milefilename.extn'
+        await download.saveAs(path.join(__dirname, `../../../../Downloads`, download.suggestedFilename()));
     }
 
     async uploadFile(): Promise<void> {
         // Select one file
-        const uploadFilePath = path.join(__dirname, `../../utils/functional/sampleFile.jpeg`);
+        const uploadFilePath = path.join(__dirname, `../../utils/functional/Playwright.pdf`);
         await this.UPLOAD_BUTTON.setInputFiles(uploadFilePath);
+    }
+
+    async printTableData(): Promise<void> {
+        const tableRows = await this.table.count();
+
+        for(let i=0; i < tableRows; i++){
+        const currentRow = this.table.nth(i);
+        const cols = currentRow.locator('th, td');
+        const columnCount = await cols.count();
+        let cellData = '';
+            for(let j=0; j < columnCount; j++){
+                const cellText = (await cols.nth(j).innerText())
+                cellData += cellText.trim()+' ';
+            }
+            console.log(cellData)
+        }
     }
 }

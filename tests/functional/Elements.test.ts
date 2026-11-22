@@ -1,4 +1,5 @@
 import test from '@lib/BaseTest';
+import { LoginPage } from '@pages/LoginPage';
 import { expect } from '@playwright/test';
 
 test(`Verify Elements Page`, { tag: '@Smoke'}, async ({ loginPage, elementsPage, webActions }) => {
@@ -31,4 +32,11 @@ test(`Verify Elements Page`, { tag: '@Smoke'}, async ({ loginPage, elementsPage,
     const homePage = await elementsPage.openHomeLinkInNewTab();
     expect(homePage.url()).toBe(`https://demoqa.com/`);
     await homePage.close();
+});
+
+test('Print table data', async ({ loginPage, elementsPage, webActions }) => {
+    await loginPage.navigateToURL();
+    await webActions.clickByText('Elements');
+    await webActions.clickByText('Web Tables')
+    await elementsPage.printTableData();
 });
