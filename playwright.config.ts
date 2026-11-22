@@ -42,9 +42,9 @@ const config: PlaywrightTestConfig = {
   retries: 1,
 
   //Reporters
-  reporter: isCI 
-    ? [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }]]
-    : [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }],['ortoni-report', reportConfig]],
+  reporter: isCI
+    ? [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`blob`]]
+    : [[`./CustomReporterConfig.ts`], [`allure-playwright`], [`html`, { outputFolder: 'html-report', open: 'never' }], ['ortoni-report', reportConfig]],
 
   projects: [
     {
@@ -61,8 +61,7 @@ const config: PlaywrightTestConfig = {
         baseURL: testConfig[currentEnvironment],
 
         //Browser Mode
-        // headless: isCI ? true : false,
-        headless : false,
+        headless: isCI ? true : false,
 
         //Browser height and width
         viewport: { width: 1500, height: 730 },
