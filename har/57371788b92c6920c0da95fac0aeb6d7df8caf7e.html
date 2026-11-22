@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        !function(){"use strict";var t,n,i,o,r=function(n,t){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(n,t){n.__proto__=t}||function(n,t){for(var i in t)t.hasOwnProperty(i)&&(n[i]=t[i])})(n,t)};(n=t=t||{})[n.None=0]="None",n[n.Cookie=1]="Cookie",n[n.LocalStorage=2]="LocalStorage",n[n.Delegation=4]="Delegation",(o=i=i||{})[o.Unknown=0]="Unknown",o[o.Deactivated=1]="Deactivated",o[o.Activated=2]="Activated";var e=(u.fromUserIdentificationData=function(n){return new u(n.value,n.origin)},u.fromValue=function(n){return new u(n,t.None)},u.prototype.hasValue=function(){return""!==String(this.value)&&null!==this.value&&void 0!==this.value},u);function u(n,t){this.value=n,this.origin=t}var s,c,f;r(s=a,c=f=e),s.prototype=null===c?Object.create(c):(h.prototype=c.prototype,new h),a.prototype.hasValue=function(){return""!==String(this.value)&&null!==this.value&&void 0!==this.value},a.prototype.saveOnAllStorages=function(){if(this.hasValue()){var n="boolean"==typeof this.value?this.value?"1":"0":String(this.value);this.storageAdapter.writeToAllStorages(this.storageKey,n,this.expirationTimeHours)}},a.prototype.toJSON=function(){return{value:this.value,origin:this.origin}};function h(){this.constructor=s}function a(n,t,i,o,r){var e=f.call(this,i,o)||this;return e.storageKey=n,e.expirationTimeHours=t,e.storageAdapter=r,e}function v(){}(new(v.prototype.Start=function(){!function(n,t){t.parent.postMessage(n,"*")}({isCriteoMessage:!0},window)},v)).Start()}();
+
+    </script>
+</head>
+<body>
+</body>
+</html>
